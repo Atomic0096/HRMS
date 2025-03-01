@@ -49,7 +49,7 @@
         var result = await UserManager.ChangeEmailAsync(user, Email, code);
         if (!result.Succeeded)
         {
-            RedirectManager.RedirectTo("Account/Manage/Email");
+            RedirectManager.RedirectTo("/Account/Manage/Email");
             return;
         }
 
