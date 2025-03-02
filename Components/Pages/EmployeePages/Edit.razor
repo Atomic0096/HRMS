@@ -4,15 +4,14 @@
 @inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
 @inject NavigationManager NavigationManager
 
-<PageTitle>Edit</PageTitle>
+<PageTitle>编辑员工</PageTitle>
 
-<h1>Edit</h1>
+<h1>编辑员工</h1>
 
-<h2>Employee</h2>
 <hr />
 @if (Employee is null)
 {
-    <p><em>Loading...</em></p>
+    <p><em>加载中...</em></p>
 }
 else
 {
@@ -23,49 +22,60 @@ else
                 <ValidationSummary role="alert"/>
                 <input type="hidden" name="Employee.Id" value="@Employee.Id" />
                 <div class="mb-3">
-                    <label for="name" class="form-label">Name:</label>
+                    <label for="name" class="form-label">姓名：</label>
                     <InputText id="name" @bind-Value="Employee.Name" class="form-control" aria-required="true"/>
                     <ValidationMessage For="() => Employee.Name" class="text-danger" />
                 </div>
                 <div class="mb-3">
-                    <label for="gender" class="form-label">Gender:</label>
+                    <label for="gender" class="form-label">性别</label>
                     <InputText id="gender" @bind-Value="Employee.Gender" class="form-control" aria-required="true"/>
                     <ValidationMessage For="() => Employee.Gender" class="text-danger" />
                 </div>
                 <div class="mb-3">
-                    <label for="dateofbirth" class="form-label">DateOfBirth:</label>
+                    <label for="dateofbirth" class="form-label">出生日期：</label>
                     <InputDate id="dateofbirth" @bind-Value="Employee.DateOfBirth" class="form-control" />
                     <ValidationMessage For="() => Employee.DateOfBirth" class="text-danger" />
                 </div>
                 <div class="mb-3">
-                    <label for="salary" class="form-label">Salary:</label>
+                    <label for="salary" class="form-label">薪资</label>
                     <InputNumber id="salary" @bind-Value="Employee.Salary" class="form-control" />
                     <ValidationMessage For="() => Employee.Salary" class="text-danger" />
                 </div>
                 <div class="mb-3">
-                    <label for="dateofentry" class="form-label">DateOfEntry:</label>
+                    <label for="dateofentry" class="form-label">入职日期</label>
                     <InputDate id="dateofentry" @bind-Value="Employee.DateOfEntry" class="form-control" />
                     <ValidationMessage For="() => Employee.DateOfEntry" class="text-danger" />
                 </div>
                 <div class="mb-3">
-                    <label for="departmentid" class="form-label">DepartmentId:</label>
-                    <InputNumber id="departmentid" @bind-Value="Employee.DepartmentId" class="form-control" />
+                    <label for="departmentid" class="form-label">部门：</label>
+                    <InputSelect id="departmentid" @bind-Value="Employee.DepartmentId" class="form-control">
+                        <!--下拉框中的选项-->
+                        <option value="">-- 选择部门 --</option>
+                        @foreach (var department in Departments)
+                        {
+                            <option value="@department.Id">@department.DepartmentName<!--下拉框中的文本--></option>
+                        }
+                    </InputSelect>
                     <ValidationMessage For="() => Employee.DepartmentId" class="text-danger" />
                 </div>
                 <div class="mb-3">
-                    <label for="levelid" class="form-label">LevelId:</label>
-                    <InputNumber id="levelid" @bind-Value="Employee.LevelId" class="form-control" />
+                    <label for="levelid" class="form-label">职位：</label>
+                    <InputSelect id="levelid" @bind-Value="Employee.LevelId" class="form-control">
+                        <!--下拉框中的选项-->
+                        <option value="">-- 选择职位 --</option>
+                        @foreach (var level in Levels)
+                        {
+                            <option value="@level.Id">@level.LevelName<!--下拉框中的文本--></option>
+                        }
+                    </InputSelect>
                     <ValidationMessage For="() => Employee.LevelId" class="text-danger" />
                 </div>
-                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="submit" class="btn btn-primary">保存</button>
+                <a href="/employees"><button class="btn btn-primary">返回</button></a>
             </EditForm>
         </div>
     </div>
 }
-
-<div>
-    <a href="/employees">Back to List</a>
-</div>
 
 @code {
     [SupplyParameterFromQuery]
@@ -73,10 +83,14 @@ else
 
     [SupplyParameterFromForm]
     private Employee? Employee { get; set; }
+    private List<Department> Departments { get; set; } = new();
+    private List<Level> Levels { get; set; } = new();
 
     protected override async Task OnInitializedAsync()
     {
         using var context = DbFactory.CreateDbContext();
+        Departments = await context.Department.ToListAsync();
+        Levels = await context.Level.ToListAsync();
         Employee ??= await context.Employee.FirstOrDefaultAsync(m => m.Id == Id);
 
         if (Employee is null)

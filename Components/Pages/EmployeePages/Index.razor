@@ -1,4 +1,5 @@
 @page "/employees"
+@rendermode InteractiveServer
 @using Microsoft.EntityFrameworkCore
 @using Microsoft.AspNetCore.Components.QuickGrid
 @using HRMS.Models
@@ -6,32 +7,46 @@
 @implements IAsyncDisposable
 @inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
 
-<PageTitle>Index</PageTitle>
+<PageTitle>员工管理</PageTitle>
 
-<h1>Index</h1>
-
+<h1>员工管理</h1>
+<div>
+    <form action="/employees" data-enhance>
+        <input type="search" name="nameFilter" />
+        <input type="submit" value="搜索" />
+    </form>
+</div>
 <p>
-    <a href="employees/create">Create New</a>
+    <a href="employees/create">新建</a>
 </p>
 
-<QuickGrid Class="table" Items="context.Employee">
-    <PropertyColumn Property="employee => employee.Name" />
-    <PropertyColumn Property="employee => employee.Gender" />
-    <PropertyColumn Property="employee => employee.DateOfBirth" />
-    <PropertyColumn Property="employee => employee.Salary" />
-    <PropertyColumn Property="employee => employee.DateOfEntry" />
-    <PropertyColumn Property="employee => employee.DepartmentId" />
-    <PropertyColumn Property="employee => employee.LevelId" />
+<QuickGrid Class="table" Items="FilteredEmployees" Pagination="pagination">
+    <PropertyColumn Property="employee => employee.Name" Title="姓名" />
+    <PropertyColumn Property="employee => employee.Gender" Title="性别" />
+    <PropertyColumn Property="employee => employee.DateOfBirth" Title="出生日期" />
+    <PropertyColumn Property="employee => employee.Salary" Title="薪资" />
+    <PropertyColumn Property="employee => employee.DateOfEntry" Title="入职日期" />
+    <PropertyColumn Property="employee => employee.Department.DepartmentName" Title="部门" />
+    <PropertyColumn Property="employee => employee.Level.LevelName" Title="职位" />
 
     <TemplateColumn Context="employee">
-        <a href="@($"employees/edit?id={employee.Id}")">Edit</a> |
-        <a href="@($"employees/details?id={employee.Id}")">Details</a> |
-        <a href="@($"employees/delete?id={employee.Id}")">Delete</a>
+        <a href="@($"employees/edit?id={employee.Id}")">编辑</a> |
+        <a href="@($"employees/details?id={employee.Id}")">详情</a> |
+        <a href="@($"employees/delete?id={employee.Id}")">删除</a>
     </TemplateColumn>
 </QuickGrid>
+<Paginator State="pagination" />
 
 @code {
+    private PaginationState pagination = new PaginationState { ItemsPerPage = 10 };
     private ApplicationDbContext context = default!;
+    [SupplyParameterFromQuery]
+    private string? NameFilter { get; set; }
+    private IQueryable<Employee> FilteredEmployees => 
+        context.Employee
+            .Include(e => e.Department)
+            .Include(e => e.Level)
+            .Where(m => m.Name!.Contains(NameFilter ?? string.Empty));
 
     protected override void OnInitialized()
     {
