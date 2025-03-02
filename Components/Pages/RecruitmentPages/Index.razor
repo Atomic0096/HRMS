@@ -1,0 +1,40 @@
+@page "/recruitments"
+@using Microsoft.EntityFrameworkCore
+@using Microsoft.AspNetCore.Components.QuickGrid
+@using HRMS.Models
+@using HRMS.Data
+@implements IAsyncDisposable
+@inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
+
+<PageTitle>Index</PageTitle>
+
+<h1>Index</h1>
+
+<p>
+    <a href="recruitments/create">Create New</a>
+</p>
+
+<QuickGrid Class="table" Items="context.Recruitment">
+    <PropertyColumn Property="recruitment => recruitment.Description" />
+    <PropertyColumn Property="recruitment => recruitment.BottomSalary" />
+    <PropertyColumn Property="recruitment => recruitment.TopSalary" />
+    <PropertyColumn Property="recruitment => recruitment.DepartmentId" />
+    <PropertyColumn Property="recruitment => recruitment.LevelId" />
+
+    <TemplateColumn Context="recruitment">
+        <a href="@($"recruitments/edit?id={recruitment.Id}")">Edit</a> |
+        <a href="@($"recruitments/details?id={recruitment.Id}")">Details</a> |
+        <a href="@($"recruitments/delete?id={recruitment.Id}")">Delete</a>
+    </TemplateColumn>
+</QuickGrid>
+
+@code {
+    private ApplicationDbContext context = default!;
+
+    protected override void OnInitialized()
+    {
+        context = DbFactory.CreateDbContext();
+    }
+
+    public async ValueTask DisposeAsync() => await context.DisposeAsync();
+}
