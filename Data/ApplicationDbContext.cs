@@ -18,4 +18,6 @@ public DbSet<HRMS.Models.Cultivation> Cultivation { get; set; } = default!;
 public DbSet<HRMS.Models.Attendance> Attendance { get; set; } = default!;
 
 public DbSet<HRMS.Models.Recruitment> Recruitment { get; set; } = default!;
+
+public DbSet<HRMS.Models.Leave> Leave { get; set; } = default!;
 }

@@ -18,6 +18,7 @@ public class Employee
     [Column(TypeName = "decimal(18,2)")]
     public decimal Salary { get; set; }
     public DateOnly DateOfEntry { get; set; }
+    public int AnnualLeave { get; set; }
 
     //外键
     [Range(1,int.MaxValue)]

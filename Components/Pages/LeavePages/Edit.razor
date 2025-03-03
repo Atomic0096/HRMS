@@ -1,0 +1,104 @@
+@page "/leaves/edit"
+@using Microsoft.EntityFrameworkCore
+@using HRMS.Models
+@inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<PageTitle>Edit</PageTitle>
+
+<h1>Edit</h1>
+
+<h2>Leave</h2>
+<hr />
+@if (Leave is null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-4">
+            <EditForm method="post" Model="Leave" OnValidSubmit="UpdateLeave" FormName="edit" Enhance>
+                <DataAnnotationsValidator />
+                <ValidationSummary role="alert"/>
+                <input type="hidden" name="Leave.Id" value="@Leave.Id" />
+                <div class="mb-3">
+                    <label for="startdate" class="form-label">StartDate:</label>
+                    <InputDate id="startdate" @bind-Value="Leave.StartDate" class="form-control" />
+                    <ValidationMessage For="() => Leave.StartDate" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="enddate" class="form-label">EndDate:</label>
+                    <InputDate id="enddate" @bind-Value="Leave.EndDate" class="form-control" />
+                    <ValidationMessage For="() => Leave.EndDate" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="isapproved" class="form-label">IsApproved:</label>
+                    <InputCheckbox id="isapproved" @bind-Value="Leave.IsApproved" class="form-check-input" />
+                    <ValidationMessage For="() => Leave.IsApproved" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="employeeid" class="form-label">EmployeeId:</label>
+                    <InputNumber id="employeeid" @bind-Value="Leave.EmployeeId" class="form-control" />
+                    <ValidationMessage For="() => Leave.EmployeeId" class="text-danger" />
+                </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </EditForm>
+        </div>
+    </div>
+}
+
+<div>
+    <a href="/leaves">Back to List</a>
+</div>
+
+@code {
+    [SupplyParameterFromQuery]
+    private int Id { get; set; }
+
+    [SupplyParameterFromForm]
+    private Leave? Leave { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        using var context = DbFactory.CreateDbContext();
+        Leave ??= await context.Leave.FirstOrDefaultAsync(m => m.Id == Id);
+
+        if (Leave is null)
+        {
+            NavigationManager.NavigateTo("notfound");
+        }
+    }
+
+    // To protect from overposting attacks, enable the specific properties you want to bind to.
+    // For more information, see https://learn.microsoft.com/aspnet/core/blazor/forms/#mitigate-overposting-attacks.
+    private async Task UpdateLeave()
+    {
+        using var context = DbFactory.CreateDbContext();
+        context.Attach(Leave!).State = EntityState.Modified;
+
+        try
+        {
+            await context.SaveChangesAsync();
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            if (!LeaveExists(Leave!.Id))
+            {
+                NavigationManager.NavigateTo("notfound");
+            }
+            else
+            {
+                throw;
+            }
+        }
+
+        NavigationManager.NavigateTo("/leaves");
+    }
+
+    private bool LeaveExists(int id)
+    {
+        using var context = DbFactory.CreateDbContext();
+        return context.Leave.Any(e => e.Id == id);
+    }
+}

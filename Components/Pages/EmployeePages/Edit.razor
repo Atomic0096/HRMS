@@ -28,23 +28,18 @@ else
                 </div>
                 <div class="mb-3">
                     <label for="gender" class="form-label">性别</label>
-                    <InputText id="gender" @bind-Value="Employee.Gender" class="form-control" aria-required="true"/>
+                    <InputSelect id="gender" @bind-Value="Employee.Gender" class="form-control">
+                        <!--下拉框中的选项-->
+                        @if (Employee.Gender == "男")
+                        {
+                            <option value="男">男</option>
+                            <option value="女">女</option>
+                        }else{
+                            <option value="女">女</option>
+                            <option value="男">男</option>
+                        }
+                    </InputSelect>
                     <ValidationMessage For="() => Employee.Gender" class="text-danger" />
-                </div>
-                <div class="mb-3">
-                    <label for="dateofbirth" class="form-label">出生日期：</label>
-                    <InputDate id="dateofbirth" @bind-Value="Employee.DateOfBirth" class="form-control" />
-                    <ValidationMessage For="() => Employee.DateOfBirth" class="text-danger" />
-                </div>
-                <div class="mb-3">
-                    <label for="salary" class="form-label">薪资</label>
-                    <InputNumber id="salary" @bind-Value="Employee.Salary" class="form-control" />
-                    <ValidationMessage For="() => Employee.Salary" class="text-danger" />
-                </div>
-                <div class="mb-3">
-                    <label for="dateofentry" class="form-label">入职日期</label>
-                    <InputDate id="dateofentry" @bind-Value="Employee.DateOfEntry" class="form-control" />
-                    <ValidationMessage For="() => Employee.DateOfEntry" class="text-danger" />
                 </div>
                 <div class="mb-3">
                     <label for="departmentid" class="form-label">部门：</label>
@@ -69,6 +64,26 @@ else
                         }
                     </InputSelect>
                     <ValidationMessage For="() => Employee.LevelId" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="dateofbirth" class="form-label">出生日期：</label>
+                    <InputDate id="dateofbirth" @bind-Value="Employee.DateOfBirth" class="form-control" />
+                    <ValidationMessage For="() => Employee.DateOfBirth" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="salary" class="form-label">薪资：</label>
+                    <InputNumber id="salary" @bind-Value="Employee.Salary" class="form-control" />
+                    <ValidationMessage For="() => Employee.Salary" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="dateofentry" class="form-label">入职日期：</label>
+                    <InputDate id="dateofentry" @bind-Value="Employee.DateOfEntry" class="form-control" />
+                    <ValidationMessage For="() => Employee.DateOfEntry" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="annualleave" class="form-label">年假：</label> 
+                    <InputNumber id="annualleave" @bind-Value="Employee.AnnualLeave" class="form-control" /> 
+                    <ValidationMessage For="() => Employee.AnnualLeave" class="text-danger" /> 
                 </div>
                 <button type="submit" class="btn btn-primary">保存</button>
                 <a href="/employees"><button class="btn btn-primary">返回</button></a>

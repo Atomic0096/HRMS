@@ -1,0 +1,59 @@
+@page "/leaves/create"
+@using Microsoft.EntityFrameworkCore
+@using HRMS.Models
+@inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<PageTitle>Create</PageTitle>
+
+<h1>Create</h1>
+
+<h2>Leave</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <EditForm method="post" Model="Leave" OnValidSubmit="AddLeave" FormName="create" Enhance>
+            <DataAnnotationsValidator />
+            <ValidationSummary class="text-danger" role="alert"/>
+            <div class="mb-3">
+                <label for="startdate" class="form-label">StartDate:</label> 
+                <InputDate id="startdate" @bind-Value="Leave.StartDate" class="form-control" /> 
+                <ValidationMessage For="() => Leave.StartDate" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="enddate" class="form-label">EndDate:</label> 
+                <InputDate id="enddate" @bind-Value="Leave.EndDate" class="form-control" /> 
+                <ValidationMessage For="() => Leave.EndDate" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="isapproved" class="form-label">IsApproved:</label> 
+                <InputCheckbox id="isapproved" @bind-Value="Leave.IsApproved" class="form-check-input" /> 
+                <ValidationMessage For="() => Leave.IsApproved" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="employeeid" class="form-label">EmployeeId:</label> 
+                <InputNumber id="employeeid" @bind-Value="Leave.EmployeeId" class="form-control" /> 
+                <ValidationMessage For="() => Leave.EmployeeId" class="text-danger" /> 
+            </div>        
+            <button type="submit" class="btn btn-primary">Create</button>
+        </EditForm>
+    </div>
+</div>
+
+<div>
+    <a href="/leaves">Back to List</a>
+</div>
+
+@code {
+    [SupplyParameterFromForm]
+    private Leave Leave { get; set; } = new();
+
+    // To protect from overposting attacks, see https://learn.microsoft.com/aspnet/core/blazor/forms/#mitigate-overposting-attacks.
+    private async Task AddLeave()
+    {
+        using var context = DbFactory.CreateDbContext();
+        context.Leave.Add(Leave);
+        await context.SaveChangesAsync();
+        NavigationManager.NavigateTo("/leaves");
+    }
+}
