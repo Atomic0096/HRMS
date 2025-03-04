@@ -6,10 +6,10 @@ namespace HRMS.Models;
 public class Employee
 {
     public int Id { get; set; }
-    [Required]
+    [Required(ErrorMessage = "姓名为必填项")]
     [StringLength(50)]
     public string? Name { get; set; }
-    [Required]
+    [Required(ErrorMessage = "性别为必填项")]
     [RegularExpression(@"^(男|女)$")]
     public string? Gender { get; set; }
     public DateOnly DateOfBirth { get; set; }

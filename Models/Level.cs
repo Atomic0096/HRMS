@@ -5,7 +5,7 @@ namespace HRMS.Models;
 public class Level
 {
     public int Id { get; set; }
-    [Required]
+    [Required(ErrorMessage = "职位名称为必填项")]
     [StringLength(50)]
     public string? LevelName { get; set; }
 
