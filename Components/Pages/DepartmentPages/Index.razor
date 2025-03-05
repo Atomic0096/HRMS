@@ -1,26 +1,28 @@
 @page "/departments"
+@using Microsoft.AspNetCore.Authorization
 @using Microsoft.EntityFrameworkCore
 @using Microsoft.AspNetCore.Components.QuickGrid
 @using HRMS.Models
 @using HRMS.Data
 @implements IAsyncDisposable
 @inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
+@attribute [Authorize(Roles = "Admin,Boss")]
 
-<PageTitle>Index</PageTitle>
+<PageTitle>部门管理</PageTitle>
 
-<h1>Index</h1>
+<h1>部门管理</h1>
 
 <p>
-    <a href="departments/create">Create New</a>
+    <a href="departments/create">新建</a>
 </p>
 
 <QuickGrid Class="table" Items="context.Department">
-    <PropertyColumn Property="department => department.DepartmentName" />
+    <PropertyColumn Property="department => department.DepartmentName" Title="部门名称" />
 
     <TemplateColumn Context="department">
-        <a href="@($"departments/edit?id={department.Id}")">Edit</a> |
-        <a href="@($"departments/details?id={department.Id}")">Details</a> |
-        <a href="@($"departments/delete?id={department.Id}")">Delete</a>
+        <a href="@($"departments/edit?id={department.Id}")">编辑</a> |
+        <a href="@($"departments/details?id={department.Id}")">详情</a> |
+        <a href="@($"departments/delete?id={department.Id}")">删除</a>
     </TemplateColumn>
 </QuickGrid>
 

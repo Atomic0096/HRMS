@@ -4,15 +4,14 @@
 @inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
 @inject NavigationManager NavigationManager
 
-<PageTitle>Edit</PageTitle>
+<PageTitle>编辑职位</PageTitle>
 
-<h1>Edit</h1>
+<h1>编辑职位</h1>
 
-<h2>Level</h2>
 <hr />
 @if (Level is null)
 {
-    <p><em>Loading...</em></p>
+    <p><em>加载中...</em></p>
 }
 else
 {
@@ -23,19 +22,16 @@ else
                 <ValidationSummary role="alert"/>
                 <input type="hidden" name="Level.Id" value="@Level.Id" />
                 <div class="mb-3">
-                    <label for="levelname" class="form-label">LevelName:</label>
+                    <label for="levelname" class="form-label">职位名称：</label>
                     <InputText id="levelname" @bind-Value="Level.LevelName" class="form-control" aria-required="true"/>
                     <ValidationMessage For="() => Level.LevelName" class="text-danger" />
                 </div>
-                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="submit" class="btn btn-primary">保存</button>
+                <a href="/levels"><button class="btn btn-primary">返回</button></a>
             </EditForm>
         </div>
     </div>
 }
-
-<div>
-    <a href="/levels">Back to List</a>
-</div>
 
 @code {
     [SupplyParameterFromQuery]

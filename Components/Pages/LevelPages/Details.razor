@@ -4,25 +4,24 @@
 @inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
 @inject NavigationManager NavigationManager
 
-<PageTitle>Details</PageTitle>
+<PageTitle>职位详情</PageTitle>
 
-<h1>Details</h1>
+<h1>职位详情</h1>
 
 <div>
-    <h2>Level</h2>
     <hr />
     @if (level is null)
     {
-        <p><em>Loading...</em></p>
+        <p><em>加载中...</em></p>
     }
     else {
         <dl class="row">
-            <dt class="col-sm-2">LevelName</dt>
+            <dt class="col-sm-2">职位名称</dt>
             <dd class="col-sm-10">@level.LevelName</dd>
         </dl>
         <div>
-            <a href="@($"/levels/edit?id={level.Id}")">Edit</a> |
-            <a href="@($"/levels")">Back to List</a>
+            <a href="@($"/levels/edit?id={level.Id}")"><button class="btn btn-primary">编辑</button></a>
+            <a href="@($"/levels")"><button class="btn btn-primary">返回</button></a>
         </div>
     }
 </div>
