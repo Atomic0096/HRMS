@@ -1,0 +1,64 @@
+@page "/recruitments/create"
+@using Microsoft.EntityFrameworkCore
+@using HRMS.Models
+@inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<PageTitle>Create</PageTitle>
+
+<h1>Create</h1>
+
+<h2>Recruitment</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <EditForm method="post" Model="Recruitment" OnValidSubmit="AddRecruitment" FormName="create" Enhance>
+            <DataAnnotationsValidator />
+            <ValidationSummary class="text-danger" role="alert"/>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description:</label> 
+                <InputText id="description" @bind-Value="Recruitment.Description" class="form-control" /> 
+                <ValidationMessage For="() => Recruitment.Description" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="bottomsalary" class="form-label">BottomSalary:</label> 
+                <InputNumber id="bottomsalary" @bind-Value="Recruitment.BottomSalary" class="form-control" /> 
+                <ValidationMessage For="() => Recruitment.BottomSalary" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="topsalary" class="form-label">TopSalary:</label> 
+                <InputNumber id="topsalary" @bind-Value="Recruitment.TopSalary" class="form-control" /> 
+                <ValidationMessage For="() => Recruitment.TopSalary" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="departmentid" class="form-label">DepartmentId:</label> 
+                <InputNumber id="departmentid" @bind-Value="Recruitment.DepartmentId" class="form-control" /> 
+                <ValidationMessage For="() => Recruitment.DepartmentId" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="levelid" class="form-label">LevelId:</label> 
+                <InputNumber id="levelid" @bind-Value="Recruitment.LevelId" class="form-control" /> 
+                <ValidationMessage For="() => Recruitment.LevelId" class="text-danger" /> 
+            </div>        
+            <button type="submit" class="btn btn-primary">Create</button>
+        </EditForm>
+    </div>
+</div>
+
+<div>
+    <a href="/recruitments">Back to List</a>
+</div>
+
+@code {
+    [SupplyParameterFromForm]
+    private Recruitment Recruitment { get; set; } = new();
+
+    // To protect from overposting attacks, see https://learn.microsoft.com/aspnet/core/blazor/forms/#mitigate-overposting-attacks.
+    private async Task AddRecruitment()
+    {
+        using var context = DbFactory.CreateDbContext();
+        context.Recruitment.Add(Recruitment);
+        await context.SaveChangesAsync();
+        NavigationManager.NavigateTo("/recruitments");
+    }
+}

@@ -3,13 +3,12 @@ using HRMS.Data;
 
 namespace HRMS.Models;
 
-public class Cultivation
+public class Leave
 {
     public int Id { get; set; }
     public DateOnly StartDate { get; set; }
     public DateOnly EndDate { get; set; }
-    public bool IsAccepted { get; set; }
-    public string? Content { get; set; }
+    public bool IsApproved { get; set; }
 
     //外键
     [Range(1,int.MaxValue)]

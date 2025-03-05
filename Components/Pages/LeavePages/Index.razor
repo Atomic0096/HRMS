@@ -1,0 +1,39 @@
+@page "/leaves"
+@using Microsoft.EntityFrameworkCore
+@using Microsoft.AspNetCore.Components.QuickGrid
+@using HRMS.Models
+@using HRMS.Data
+@implements IAsyncDisposable
+@inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
+
+<PageTitle>Index</PageTitle>
+
+<h1>Index</h1>
+
+<p>
+    <a href="leaves/create">Create New</a>
+</p>
+
+<QuickGrid Class="table" Items="context.Leave">
+    <PropertyColumn Property="leave => leave.StartDate" />
+    <PropertyColumn Property="leave => leave.EndDate" />
+    <PropertyColumn Property="leave => leave.IsApproved" />
+    <PropertyColumn Property="leave => leave.UserId" />
+
+    <TemplateColumn Context="leave">
+        <a href="@($"leaves/edit?id={leave.Id}")">Edit</a> |
+        <a href="@($"leaves/details?id={leave.Id}")">Details</a> |
+        <a href="@($"leaves/delete?id={leave.Id}")">Delete</a>
+    </TemplateColumn>
+</QuickGrid>
+
+@code {
+    private ApplicationDbContext context = default!;
+
+    protected override void OnInitialized()
+    {
+        context = DbFactory.CreateDbContext();
+    }
+
+    public async ValueTask DisposeAsync() => await context.DisposeAsync();
+}

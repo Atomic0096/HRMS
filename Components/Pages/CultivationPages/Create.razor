@@ -1,0 +1,64 @@
+@page "/cultivations/create"
+@using Microsoft.EntityFrameworkCore
+@using HRMS.Models
+@inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<PageTitle>Create</PageTitle>
+
+<h1>Create</h1>
+
+<h2>Cultivation</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <EditForm method="post" Model="Cultivation" OnValidSubmit="AddCultivation" FormName="create" Enhance>
+            <DataAnnotationsValidator />
+            <ValidationSummary class="text-danger" role="alert"/>
+            <div class="mb-3">
+                <label for="startdate" class="form-label">StartDate:</label> 
+                <InputDate id="startdate" @bind-Value="Cultivation.StartDate" class="form-control" /> 
+                <ValidationMessage For="() => Cultivation.StartDate" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="enddate" class="form-label">EndDate:</label> 
+                <InputDate id="enddate" @bind-Value="Cultivation.EndDate" class="form-control" /> 
+                <ValidationMessage For="() => Cultivation.EndDate" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="isaccepted" class="form-label">IsAccepted:</label> 
+                <InputCheckbox id="isaccepted" @bind-Value="Cultivation.IsAccepted" class="form-check-input" /> 
+                <ValidationMessage For="() => Cultivation.IsAccepted" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="content" class="form-label">Content:</label> 
+                <InputText id="content" @bind-Value="Cultivation.Content" class="form-control" /> 
+                <ValidationMessage For="() => Cultivation.Content" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="userid" class="form-label">UserId:</label> 
+                <InputNumber id="userid" @bind-Value="Cultivation.UserId" class="form-control" /> 
+                <ValidationMessage For="() => Cultivation.UserId" class="text-danger" /> 
+            </div>        
+            <button type="submit" class="btn btn-primary">Create</button>
+        </EditForm>
+    </div>
+</div>
+
+<div>
+    <a href="/cultivations">Back to List</a>
+</div>
+
+@code {
+    [SupplyParameterFromForm]
+    private Cultivation Cultivation { get; set; } = new();
+
+    // To protect from overposting attacks, see https://learn.microsoft.com/aspnet/core/blazor/forms/#mitigate-overposting-attacks.
+    private async Task AddCultivation()
+    {
+        using var context = DbFactory.CreateDbContext();
+        context.Cultivation.Add(Cultivation);
+        await context.SaveChangesAsync();
+        NavigationManager.NavigateTo("/cultivations");
+    }
+}

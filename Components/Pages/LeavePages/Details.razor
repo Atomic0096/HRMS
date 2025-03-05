@@ -1,0 +1,52 @@
+@page "/leaves/details"
+@using Microsoft.EntityFrameworkCore
+@using HRMS.Models
+@inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<PageTitle>Details</PageTitle>
+
+<h1>Details</h1>
+
+<div>
+    <h2>Leave</h2>
+    <hr />
+    @if (leave is null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else {
+        <dl class="row">
+            <dt class="col-sm-2">StartDate</dt>
+            <dd class="col-sm-10">@leave.StartDate</dd>
+            <dt class="col-sm-2">EndDate</dt>
+            <dd class="col-sm-10">@leave.EndDate</dd>
+            <dt class="col-sm-2">IsApproved</dt>
+            <dd class="col-sm-10">@leave.IsApproved</dd>
+            <dt class="col-sm-2">UserId</dt>
+            <dd class="col-sm-10">@leave.UserId</dd>
+        </dl>
+        <div>
+            <a href="@($"/leaves/edit?id={leave.Id}")">Edit</a> |
+            <a href="@($"/leaves")">Back to List</a>
+        </div>
+    }
+</div>
+
+@code {
+    private Leave? leave;
+
+    [SupplyParameterFromQuery]
+    private int Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        using var context = DbFactory.CreateDbContext();
+        leave = await context.Leave.FirstOrDefaultAsync(m => m.Id == Id);
+
+        if (leave is null)
+        {
+            NavigationManager.NavigateTo("notfound");
+        }
+    }
+}

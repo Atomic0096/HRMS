@@ -1,0 +1,54 @@
+@page "/recruitments/details"
+@using Microsoft.EntityFrameworkCore
+@using HRMS.Models
+@inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<PageTitle>Details</PageTitle>
+
+<h1>Details</h1>
+
+<div>
+    <h2>Recruitment</h2>
+    <hr />
+    @if (recruitment is null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else {
+        <dl class="row">
+            <dt class="col-sm-2">Description</dt>
+            <dd class="col-sm-10">@recruitment.Description</dd>
+            <dt class="col-sm-2">BottomSalary</dt>
+            <dd class="col-sm-10">@recruitment.BottomSalary</dd>
+            <dt class="col-sm-2">TopSalary</dt>
+            <dd class="col-sm-10">@recruitment.TopSalary</dd>
+            <dt class="col-sm-2">DepartmentId</dt>
+            <dd class="col-sm-10">@recruitment.DepartmentId</dd>
+            <dt class="col-sm-2">LevelId</dt>
+            <dd class="col-sm-10">@recruitment.LevelId</dd>
+        </dl>
+        <div>
+            <a href="@($"/recruitments/edit?id={recruitment.Id}")">Edit</a> |
+            <a href="@($"/recruitments")">Back to List</a>
+        </div>
+    }
+</div>
+
+@code {
+    private Recruitment? recruitment;
+
+    [SupplyParameterFromQuery]
+    private int Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        using var context = DbFactory.CreateDbContext();
+        recruitment = await context.Recruitment.FirstOrDefaultAsync(m => m.Id == Id);
+
+        if (recruitment is null)
+        {
+            NavigationManager.NavigateTo("notfound");
+        }
+    }
+}

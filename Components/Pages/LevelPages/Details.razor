@@ -1,0 +1,46 @@
+@page "/levels/details"
+@using Microsoft.EntityFrameworkCore
+@using HRMS.Models
+@inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<PageTitle>Details</PageTitle>
+
+<h1>Details</h1>
+
+<div>
+    <h2>Level</h2>
+    <hr />
+    @if (level is null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else {
+        <dl class="row">
+            <dt class="col-sm-2">LevelName</dt>
+            <dd class="col-sm-10">@level.LevelName</dd>
+        </dl>
+        <div>
+            <a href="@($"/levels/edit?id={level.Id}")">Edit</a> |
+            <a href="@($"/levels")">Back to List</a>
+        </div>
+    }
+</div>
+
+@code {
+    private Level? level;
+
+    [SupplyParameterFromQuery]
+    private int Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        using var context = DbFactory.CreateDbContext();
+        level = await context.Level.FirstOrDefaultAsync(m => m.Id == Id);
+
+        if (level is null)
+        {
+            NavigationManager.NavigateTo("notfound");
+        }
+    }
+}
