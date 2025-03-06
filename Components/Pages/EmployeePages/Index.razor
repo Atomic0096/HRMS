@@ -18,6 +18,10 @@
     <PropertyColumn Property="user => user.Level.LevelName" Title="职位" />
     <PropertyColumn Property="user => user.DateOfEntry" Title="入职日期" />
     <PropertyColumn Property="user => user.Salary" Title="薪资" />
+
+    <TemplateColumn Context="employee">
+        <a href="@($"employees/edit?id={employee.Id}")">编辑</a> |
+    </TemplateColumn>
 </QuickGrid>
 
 @code{

@@ -1,0 +1,145 @@
+@page "/employees/edit"
+@using Microsoft.EntityFrameworkCore
+@using HRMS.Models
+@using HRMS.Data
+@inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<PageTitle>编辑员工</PageTitle>
+
+<h1>编辑员工</h1>
+
+<hr />
+@if (User is null)
+{
+    <p><em>加载中...</em></p>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-4">
+            <EditForm method="post" Model="User" OnValidSubmit="UpdateUser" FormName="edit" Enhance>
+                <DataAnnotationsValidator />
+                <ValidationSummary Level="alert"/>
+                <input type="hidden" name="User.Id" value="@User.Id" />
+                <div class="mb-3">
+                    <label for="name" class="form-label">姓名：</label>
+                    <InputText id="name" @bind-Value="User.Name" class="form-control" />
+                    <ValidationMessage For="() => User.Name" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="gender" class="form-label">性别：</label>
+                    <InputSelect id="gender" @bind-Value="User.Gender" class="form-control">
+                        @if (User.Gender == "男")
+                        {
+                            <option value="男">男</option>
+                            <option value="女">女</option>
+                        }else{
+                            <option value="女">女</option>
+                            <option value="男">男</option>
+                        }
+                    </InputSelect>
+                    <ValidationMessage For="() => User.Gender" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="dateofbirth" class="form-label">出生日期：</label>
+                    <InputDate id="dateofbirth" @bind-Value="User.DateOfBirth" class="form-control" />
+                    <ValidationMessage For="() => User.DateOfBirth" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="departmentid" class="form-label">部门：</label>
+                    <InputSelect id="departmentid" @bind-Value="User.DepartmentId" class="form-control">
+                        <!--下拉框中的选项-->
+                        <option value="">-- 选择部门 --</option>
+                        @foreach (var department in Departments)
+                        {
+                            <option value="@department.Id">@department.DepartmentName<!--下拉框中的文本--></option>
+                        }
+                    </InputSelect>
+                    <ValidationMessage For="() => User.DepartmentId" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="levelid" class="form-label">职位：</label>
+                    <InputSelect id="levelid" @bind-Value="User.LevelId" class="form-control">
+                        <!--下拉框中的选项-->
+                        <option value="">-- 选择职位 --</option>
+                        @foreach (var level in Levels)
+                        {
+                            <option value="@level.Id">@level.LevelName<!--下拉框中的文本--></option>
+                        }
+                    </InputSelect>
+                    <ValidationMessage For="() => User.LevelId" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="dateofentry" class="form-label">入职日期：</label>
+                    <InputDate id="dateofentry" @bind-Value="User.DateOfEntry" class="form-control" />
+                    <ValidationMessage For="() => User.DateOfEntry" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="salary" class="form-label">薪资：</label>
+                    <InputNumber id="salary" @bind-Value="User.Salary" class="form-control" />
+                    <ValidationMessage For="() => User.Salary" class="text-danger" />
+                </div>
+                <button type="submit" class="btn btn-primary">保存</button>
+                <a href="/employees"><button class="btn btn-primary">返回</button></a>
+            </EditForm>
+        </div>
+    </div>
+}
+
+@code{
+    [SupplyParameterFromQuery]
+    private string Id { get; set; }
+    [SupplyParameterFromForm]
+    private ApplicationUser? User { get; set; }
+    private List<Department> Departments { get; set; } = new();
+    private List<Level> Levels { get; set; } = new();
+    protected override async Task OnInitializedAsync()
+    {
+        using var context = DbFactory.CreateDbContext();
+        Departments = await context.Department.ToListAsync();
+        Levels = await context.Level.ToListAsync();
+        User ??= await context.Users.FirstOrDefaultAsync(m => m.Id == Id);
+
+        if (User is null)
+        {
+            NavigationManager.NavigateTo("notfound");
+        }
+    }
+
+    private async Task UpdateUser()
+    {
+        using var context = DbFactory.CreateDbContext();
+        context.Attach(User!).State = EntityState.Modified;
+
+        try
+        {
+            await context.SaveChangesAsync();
+        }
+        catch (DbUpdateConcurrencyException ex)
+        {
+            var entry = ex.Entries.Single();
+            var databaseValues = await entry.GetDatabaseValuesAsync();
+
+            if (databaseValues == null)
+            {
+                NavigationManager.NavigateTo("notfound");
+                return;
+            }
+
+            // 可选：保留用户提交的值或使用数据库最新值
+            entry.OriginalValues.SetValues(databaseValues);
+            // 提示用户数据已更改，可能需要重新编辑
+            // 这里示例直接保存数据库当前值
+            await context.SaveChangesAsync();
+        }
+
+        NavigationManager.NavigateTo("/employees");
+    }
+
+    private bool UserExists(string id)
+    {
+        using var context = DbFactory.CreateDbContext();
+        return context.Users.Any(e => e.Id == id);
+    }
+}
