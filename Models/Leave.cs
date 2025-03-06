@@ -11,7 +11,6 @@ public class Leave
     public bool IsApproved { get; set; }
 
     //外键
-    [Range(1,int.MaxValue)]
-    public int? UserId { get; set; }//员工
+    public string? UserId { get; set; }//员工
     public ApplicationUser? ApplicationUser { get; set; }
 }

@@ -1,14 +1,15 @@
 @page "/leaves/create"
 @using Microsoft.EntityFrameworkCore
 @using HRMS.Models
+@using System.Security.Claims
 @inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
 @inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthenticationStateProvider
 
-<PageTitle>Create</PageTitle>
+<PageTitle>请假</PageTitle>
 
-<h1>Create</h1>
+<h1>请假</h1>
 
-<h2>Leave</h2>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -16,32 +17,18 @@
             <DataAnnotationsValidator />
             <ValidationSummary class="text-danger" role="alert"/>
             <div class="mb-3">
-                <label for="startdate" class="form-label">StartDate:</label> 
+                <label for="startdate" class="form-label">开始日期：</label> 
                 <InputDate id="startdate" @bind-Value="Leave.StartDate" class="form-control" /> 
                 <ValidationMessage For="() => Leave.StartDate" class="text-danger" /> 
             </div>        
             <div class="mb-3">
-                <label for="enddate" class="form-label">EndDate:</label> 
+                <label for="enddate" class="form-label">结束日期：</label> 
                 <InputDate id="enddate" @bind-Value="Leave.EndDate" class="form-control" /> 
                 <ValidationMessage For="() => Leave.EndDate" class="text-danger" /> 
-            </div>        
-            <div class="mb-3">
-                <label for="isapproved" class="form-label">IsApproved:</label> 
-                <InputCheckbox id="isapproved" @bind-Value="Leave.IsApproved" class="form-check-input" /> 
-                <ValidationMessage For="() => Leave.IsApproved" class="text-danger" /> 
-            </div>        
-            <div class="mb-3">
-                <label for="userid" class="form-label">UserId:</label> 
-                <InputNumber id="userid" @bind-Value="Leave.UserId" class="form-control" /> 
-                <ValidationMessage For="() => Leave.UserId" class="text-danger" /> 
-            </div>        
-            <button type="submit" class="btn btn-primary">Create</button>
+            </div>                   
+            <button type="submit" class="btn btn-primary">申请</button>
         </EditForm>
     </div>
-</div>
-
-<div>
-    <a href="/leaves">Back to List</a>
 </div>
 
 @code {
@@ -49,6 +36,15 @@
     private Leave Leave { get; set; } = new();
 
     // To protect from overposting attacks, see https://learn.microsoft.com/aspnet/core/blazor/forms/#mitigate-overposting-attacks.
+    protected override async Task OnInitializedAsync()
+    {
+        var AuthState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var CurrentUser = AuthState.User;
+        if(CurrentUser.Identity.IsAuthenticated)
+        {
+            Leave.UserId = CurrentUser.FindFirstValue(ClaimTypes.NameIdentifier);
+        }
+    }
     private async Task AddLeave()
     {
         using var context = DbFactory.CreateDbContext();

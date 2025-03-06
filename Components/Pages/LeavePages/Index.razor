@@ -6,19 +6,17 @@
 @implements IAsyncDisposable
 @inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
 
-<PageTitle>Index</PageTitle>
+<PageTitle>请假</PageTitle>
 
-<h1>Index</h1>
+<h1>请假</h1>
 
-<p>
-    <a href="leaves/create">Create New</a>
-</p>
-
-<QuickGrid Class="table" Items="context.Leave">
-    <PropertyColumn Property="leave => leave.StartDate" />
-    <PropertyColumn Property="leave => leave.EndDate" />
-    <PropertyColumn Property="leave => leave.IsApproved" />
-    <PropertyColumn Property="leave => leave.UserId" />
+<QuickGrid Class="table" Items="context.Leave.Include(l => l.ApplicationUser).ThenInclude(u => u.Department).Include(l => l.ApplicationUser).ThenInclude(u => u.Level)">
+    <PropertyColumn Property="leave => leave.ApplicationUser.Name" Title="姓名" />
+    <PropertyColumn Property="leave => leave.ApplicationUser.Department.DepartmentName" Title="部门" />
+    <PropertyColumn Property="leave => leave.ApplicationUser.Level.LevelName" Title="职位" />
+    <PropertyColumn Property="leave => leave.StartDate" Title="开始日期" />
+    <PropertyColumn Property="leave => leave.EndDate" Title="结束日期" />
+    <PropertyColumn Property="leave => leave.IsApproved" Title="是否批准" />
 
     <TemplateColumn Context="leave">
         <a href="@($"leaves/edit?id={leave.Id}")">Edit</a> |
