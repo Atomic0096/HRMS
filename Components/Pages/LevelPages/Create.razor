@@ -4,11 +4,10 @@
 @inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
 @inject NavigationManager NavigationManager
 
-<PageTitle>Create</PageTitle>
+<PageTitle>新建职位</PageTitle>
 
-<h1>Create</h1>
+<h1>新建职位</h1>
 
-<h2>Level</h2>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -16,17 +15,14 @@
             <DataAnnotationsValidator />
             <ValidationSummary class="text-danger" role="alert"/>
             <div class="mb-3">
-                <label for="levelname" class="form-label">LevelName:</label> 
+                <label for="levelname" class="form-label">职位名称</label> 
                 <InputText id="levelname" @bind-Value="Level.LevelName" class="form-control" aria-required="true"/> 
                 <ValidationMessage For="() => Level.LevelName" class="text-danger" /> 
             </div>        
-            <button type="submit" class="btn btn-primary">Create</button>
+            <button type="submit" class="btn btn-primary">创建</button>
+            <a href="/levels"><button class="btn btn-primary">返回</button></a>
         </EditForm>
     </div>
-</div>
-
-<div>
-    <a href="/levels">Back to List</a>
 </div>
 
 @code {

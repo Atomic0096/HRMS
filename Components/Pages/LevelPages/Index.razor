@@ -6,21 +6,21 @@
 @implements IAsyncDisposable
 @inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
 
-<PageTitle>Index</PageTitle>
+<PageTitle>职位管理</PageTitle>
 
-<h1>Index</h1>
+<h1>职位管理</h1>
 
 <p>
-    <a href="levels/create">Create New</a>
+    <a href="levels/create">新建</a>
 </p>
 
 <QuickGrid Class="table" Items="context.Level">
-    <PropertyColumn Property="level => level.LevelName" />
+    <PropertyColumn Property="level => level.LevelName" Title="职位名称" />
 
     <TemplateColumn Context="level">
-        <a href="@($"levels/edit?id={level.Id}")">Edit</a> |
-        <a href="@($"levels/details?id={level.Id}")">Details</a> |
-        <a href="@($"levels/delete?id={level.Id}")">Delete</a>
+        <a href="@($"levels/edit?id={level.Id}")">编辑</a> |
+        <a href="@($"levels/details?id={level.Id}")">详情</a> |
+        <a href="@($"levels/delete?id={level.Id}")">删除</a>
     </TemplateColumn>
 </QuickGrid>
 
