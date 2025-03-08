@@ -4,15 +4,14 @@
 @inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
 @inject NavigationManager NavigationManager
 
-<PageTitle>Edit</PageTitle>
+<PageTitle>编辑请假</PageTitle>
 
-<h1>Edit</h1>
+<h1>编辑请假</h1>
 
-<h2>Leave</h2>
 <hr />
 @if (Leave is null)
 {
-    <p><em>Loading...</em></p>
+    <p><em>加载中...</em></p>
 }
 else
 {
@@ -23,34 +22,29 @@ else
                 <ValidationSummary role="alert"/>
                 <input type="hidden" name="Leave.Id" value="@Leave.Id" />
                 <div class="mb-3">
-                    <label for="startdate" class="form-label">StartDate:</label>
+                    <label for="startdate" class="form-label">开始日期：</label>
                     <InputDate id="startdate" @bind-Value="Leave.StartDate" class="form-control" />
                     <ValidationMessage For="() => Leave.StartDate" class="text-danger" />
                 </div>
                 <div class="mb-3">
-                    <label for="enddate" class="form-label">EndDate:</label>
+                    <label for="enddate" class="form-label">结束日期：</label>
                     <InputDate id="enddate" @bind-Value="Leave.EndDate" class="form-control" />
                     <ValidationMessage For="() => Leave.EndDate" class="text-danger" />
                 </div>
                 <div class="mb-3">
-                    <label for="isapproved" class="form-label">IsApproved:</label>
-                    <InputCheckbox id="isapproved" @bind-Value="Leave.IsApproved" class="form-check-input" />
-                    <ValidationMessage For="() => Leave.IsApproved" class="text-danger" />
+                    <label for="isapproved" class="form-label">是否批准：</label>
+                    <InputSelect id="isapproved" @bind-Value="Leave.IsApproved" class="form-control">
+                        <option value=""></option>
+                        <option value="是">是</option>
+                        <option value="否">否</option>
+                    </InputSelect>
                 </div>
-                <div class="mb-3">
-                    <label for="userid" class="form-label">UserId:</label>
-                    <InputNumber id="userid" @bind-Value="Leave.UserId" class="form-control" />
-                    <ValidationMessage For="() => Leave.UserId" class="text-danger" />
-                </div>
-                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="submit" class="btn btn-primary">保存</button>
+                <a href="/leaves"><button class="btn btn-primary">返回</button></a>
             </EditForm>
         </div>
     </div>
 }
-
-<div>
-    <a href="/leaves">Back to List</a>
-</div>
 
 @code {
     [SupplyParameterFromQuery]
@@ -58,10 +52,12 @@ else
 
     [SupplyParameterFromForm]
     private Leave? Leave { get; set; }
+    private List<Data.ApplicationUser> ApplicationUsers { get; set; } = new();
 
     protected override async Task OnInitializedAsync()
     {
         using var context = DbFactory.CreateDbContext();
+        ApplicationUsers = await context.Users.ToListAsync();
         Leave ??= await context.Leave.FirstOrDefaultAsync(m => m.Id == Id);
 
         if (Leave is null)
@@ -75,7 +71,16 @@ else
     private async Task UpdateLeave()
     {
         using var context = DbFactory.CreateDbContext();
-        context.Attach(Leave!).State = EntityState.Modified;
+        var existingLeave = await context.Leave.FirstOrDefaultAsync(e => e.Id == Id);
+        if(existingLeave == null)
+        {
+            NavigationManager.NavigateTo("notfound");
+            return;
+        }
+
+        existingLeave.StartDate = Leave.StartDate;
+        existingLeave.EndDate = Leave.EndDate;
+        existingLeave.IsApproved = Leave.IsApproved;
 
         try
         {

@@ -6,24 +6,24 @@
 @implements IAsyncDisposable
 @inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
 
-<PageTitle>Index</PageTitle>
+<PageTitle>请假管理</PageTitle>
 
-<h1>Index</h1>
+<h1>请假管理</h1>
 
 <p>
-    <a href="leaves/create">Create New</a>
+    <a href="leaves/create">新建</a>
 </p>
 
-<QuickGrid Class="table" Items="context.Leave">
-    <PropertyColumn Property="leave => leave.StartDate" />
-    <PropertyColumn Property="leave => leave.EndDate" />
-    <PropertyColumn Property="leave => leave.IsApproved" />
-    <PropertyColumn Property="leave => leave.UserId" />
+<QuickGrid Class="table" Items="context.Leave.Include(l => l.ApplicationUser).Where(l => l.ApplicationUser != null)">
+    <PropertyColumn Property="leave => leave.ApplicationUser.Name" Title="姓名" />
+    <PropertyColumn Property="leave => leave.StartDate" Title="开始日期" />
+    <PropertyColumn Property="leave => leave.EndDate" Title="结束日期" />
+    <PropertyColumn Property="leave => leave.IsApproved" title="是否批准" />
 
     <TemplateColumn Context="leave">
-        <a href="@($"leaves/edit?id={leave.Id}")">Edit</a> |
-        <a href="@($"leaves/details?id={leave.Id}")">Details</a> |
-        <a href="@($"leaves/delete?id={leave.Id}")">Delete</a>
+        <a href="@($"leaves/edit?id={leave.Id}")">编辑</a> |
+        <a href="@($"leaves/details?id={leave.Id}")">详情</a> |
+        <a href="@($"leaves/delete?id={leave.Id}")">删除</a>
     </TemplateColumn>
 </QuickGrid>
 

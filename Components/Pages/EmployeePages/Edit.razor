@@ -73,6 +73,11 @@ else
                     <InputDate id="dateofentry" @bind-Value="Employee.DateOfEntry" class="form-control" aria-required="true" />
                     <ValidationMessage For="() => Employee.DateOfEntry" class="text-danger" />
                 </div>
+                <div class="mb-3">
+                    <label for="salary" class="form-label">薪资：</label>
+                    <InputNumber id="salary" @bind-Value="Employee.Salary" class="form-control" aria-required="true" />
+                    <ValidationMessage For="() => Employee.Salary" class="text-danger" />
+                </div>
                 <button type="submit" class="btn btn-primary">保存</button>
                 <a href="/employees"><button class="btn btn-primary">返回</button></a>
             </EditForm>
@@ -117,6 +122,7 @@ else
         existingEmployee.DepartmentId = Employee.DepartmentId;
         existingEmployee.LevelId = Employee.LevelId;
         existingEmployee.DateOfEntry = Employee.DateOfEntry;
+        existingEmployee.Salary = Employee.Salary;
 
         try
         {
