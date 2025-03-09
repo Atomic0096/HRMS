@@ -1,4 +1,4 @@
-@page "/leaves"
+@page "/leavesforsupervisors"
 @using Microsoft.EntityFrameworkCore
 @using Microsoft.AspNetCore.Components.QuickGrid
 @using HRMS.Models
@@ -6,13 +6,9 @@
 @implements IAsyncDisposable
 @inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
 
-<PageTitle>请假管理</PageTitle>
+<PageTitle>请假审批</PageTitle>
 
-<h1>请假管理</h1>
-
-<p>
-    <a href="leaves/create">新建</a>
-</p>
+<h1>请假审批</h1>
 
 <QuickGrid Class="table" Items="context.Leave.Include(l => l.ApplicationUser).Where(l => l.ApplicationUser != null)">
     <PropertyColumn Property="leave => leave.ApplicationUser.Name" Title="姓名" />
@@ -21,9 +17,7 @@
     <PropertyColumn Property="leave => leave.IsApproved" title="是否批准" />
 
     <TemplateColumn Context="leave">
-        <a href="@($"leaves/edit?id={leave.Id}")">编辑</a> |
-        <a href="@($"leaves/details?id={leave.Id}")">详情</a> |
-        <a href="@($"leaves/delete?id={leave.Id}")">删除</a>
+        <a href="@($"leavesforsupervisors/edit?id={leave.Id}")">审批</a>
     </TemplateColumn>
 </QuickGrid>
 

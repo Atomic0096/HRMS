@@ -1,0 +1,42 @@
+@page "/leavesforemployees"
+@using Microsoft.EntityFrameworkCore
+@using Microsoft.AspNetCore.Components.QuickGrid
+@using HRMS.Models
+@using HRMS.Data
+@using System.Security.Claims
+@implements IAsyncDisposable
+@inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+<PageTitle>请假</PageTitle>
+
+<h1>请假</h1>
+
+<p>
+    <a href="leavesforemployees/create">申请</a>
+</p>
+
+<QuickGrid Class="table" Items="context.Leave.Include(l => l.ApplicationUser).Where(l => l.ApplicationUser.Id == CurrentUserId).Where(l => l.ApplicationUser != null)">
+    <PropertyColumn Property="leave => leave.ApplicationUser.Name" Title="姓名" />
+    <PropertyColumn Property="leave => leave.StartDate" Title="开始日期" />
+    <PropertyColumn Property="leave => leave.EndDate" Title="结束日期" />
+    <PropertyColumn Property="leave => leave.IsApproved" title="是否批准" />
+
+    <TemplateColumn Context="leave">
+        <a href="@($"leavesforemployees/delete?id={leave.Id}")">删除</a>
+    </TemplateColumn>
+</QuickGrid>
+
+@code {
+    private ApplicationDbContext context = default!;
+    private string? CurrentUserId;
+
+    protected override async Task OnInitializedAsync()
+    {
+        context = DbFactory.CreateDbContext();
+        var AuthState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        CurrentUserId = AuthState.User.FindFirstValue(ClaimTypes.NameIdentifier);
+    }
+
+    public async ValueTask DisposeAsync() => await context.DisposeAsync();
+}

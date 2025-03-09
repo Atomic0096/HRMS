@@ -1,12 +1,12 @@
-@page "/leaves/edit"
+@page "/leavesforsupervisors/edit"
 @using Microsoft.EntityFrameworkCore
 @using HRMS.Models
 @inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
 @inject NavigationManager NavigationManager
 
-<PageTitle>编辑请假</PageTitle>
+<PageTitle>审批</PageTitle>
 
-<h1>编辑请假</h1>
+<h1>审批</h1>
 
 <hr />
 @if (Leave is null)
@@ -23,12 +23,12 @@ else
                 <input type="hidden" name="Leave.Id" value="@Leave.Id" />
                 <div class="mb-3">
                     <label for="startdate" class="form-label">开始日期：</label>
-                    <InputDate id="startdate" @bind-Value="Leave.StartDate" class="form-control" />
+                    <InputDate id="startdate" @bind-Value="Leave.StartDate" class="form-control" disabled />
                     <ValidationMessage For="() => Leave.StartDate" class="text-danger" />
                 </div>
                 <div class="mb-3">
                     <label for="enddate" class="form-label">结束日期：</label>
-                    <InputDate id="enddate" @bind-Value="Leave.EndDate" class="form-control" />
+                    <InputDate id="enddate" @bind-Value="Leave.EndDate" class="form-control" disabled />
                     <ValidationMessage For="() => Leave.EndDate" class="text-danger" />
                 </div>
                 <div class="mb-3">
@@ -40,7 +40,7 @@ else
                     </InputSelect>
                 </div>
                 <button type="submit" class="btn btn-primary">保存</button>
-                <a href="/leaves"><button class="btn btn-primary">返回</button></a>
+                <a href="/leavesforsupervisors"><button class="btn btn-primary">返回</button></a>
             </EditForm>
         </div>
     </div>
@@ -98,7 +98,7 @@ else
             }
         }
 
-        NavigationManager.NavigateTo("/leaves");
+        NavigationManager.NavigateTo("/leavesforsupervisors");
     }
 
     private bool LeaveExists(int id)

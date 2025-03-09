@@ -1,4 +1,4 @@
-@page "/leaves/create"
+@page "/leavesforemployees/create"
 @using Microsoft.EntityFrameworkCore
 @using HRMS.Models
 @using System.Security.Claims
@@ -27,8 +27,8 @@
                 <InputDate id="enddate" @bind-Value="Leave.EndDate" class="form-control" /> 
                 <ValidationMessage For="() => Leave.EndDate" class="text-danger" /> 
             </div>             
-            <button type="submit" class="btn btn-primary">创建</button>
-            <a href="/leaves"><button class="btn btn-primary">返回</button></a>
+            <button type="submit" class="btn btn-primary">申请</button>
+            <a href="/leavesforemployees"><button class="btn btn-primary">返回</button></a>
         </EditForm>
     </div>
 </div>
@@ -53,6 +53,6 @@
         using var context = DbFactory.CreateDbContext();
         context.Leave.Add(Leave);
         await context.SaveChangesAsync();
-        NavigationManager.NavigateTo("/leaves");
+        NavigationManager.NavigateTo("/leavesforemployees");
     }
 }

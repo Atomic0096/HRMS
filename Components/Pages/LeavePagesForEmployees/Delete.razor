@@ -1,12 +1,12 @@
-@page "/leaves/details"
+@page "/leavesforemployees/delete"
 @using Microsoft.EntityFrameworkCore
 @using HRMS.Models
 @inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
 @inject NavigationManager NavigationManager
 
-<PageTitle>请假详情</PageTitle>
+<PageTitle>删除请假</PageTitle>
 
-<h1>请假详情</h1>
+<h1>删除请假</h1>
 
 <div>
     <hr />
@@ -18,17 +18,23 @@
         <dl class="row">
             <dt class="col-sm-2">姓名</dt>
             <dd class="col-sm-10">@leave.ApplicationUser.Name</dd>
+        </dl>
+        <dl class="row">
             <dt class="col-sm-2">开始日期</dt>
             <dd class="col-sm-10">@leave.StartDate</dd>
+        </dl>
+        <dl class="row">
             <dt class="col-sm-2">结束日期</dt>
             <dd class="col-sm-10">@leave.EndDate</dd>
+        </dl>
+        <dl class="row">
             <dt class="col-sm-2">是否批准</dt>
             <dd class="col-sm-10">@leave.IsApproved</dd>
         </dl>
-        <div>
-            <a href="@($"/leaves/edit?id={leave.Id}")"><button class="btn btn-primary">编辑</button></a>
-            <a href="@($"/leaves")"><button class="btn btn-primary">返回</button></a>
-        </div>
+        <EditForm method="post" Model="leave" OnValidSubmit="DeleteLeave" FormName="delete" Enhance>
+            <button type="submit" class="btn btn-danger" disabled="@(leave is null || leave.IsApproved == "是"|| leave.IsApproved == "否")">删除</button>
+            <a href="/leavesforemployees"><button class="btn btn-primary">返回</button></a>
+        </EditForm>
     }
 </div>
 
@@ -47,5 +53,13 @@
         {
             NavigationManager.NavigateTo("notfound");
         }
+    }
+
+    private async Task DeleteLeave()
+    {
+        using var context = DbFactory.CreateDbContext();
+        context.Leave.Remove(leave!);
+        await context.SaveChangesAsync();
+        NavigationManager.NavigateTo("/leavesforemployees");
     }
 }
