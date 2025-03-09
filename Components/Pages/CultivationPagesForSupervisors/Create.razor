@@ -1,0 +1,66 @@
+@page "/cultivationsforsupervisors/create"
+@using Microsoft.EntityFrameworkCore
+@using HRMS.Models
+@using HRMS.Data
+@inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<PageTitle>新建培训</PageTitle>
+
+<h1>新建培训</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <EditForm method="post" Model="Cultivation" OnValidSubmit="AddCultivation" FormName="create" Enhance>
+            <DataAnnotationsValidator />
+            <ValidationSummary class="text-danger" role="alert"/>
+            <div class="mb-3">
+                <label for="name" class="form-label">姓名：</label>
+                <InputSelect id="name" @bind-Value="Cultivation.ApplicationUserId" class="form-control">
+                    <option value="">-- 选择员工 --</option>
+                    @foreach (var employee in Employees)
+                    {
+                        <option value="@employee.Id">@employee.Name</option>
+                    }
+                </InputSelect>
+                <ValidationMessage For="() => Cultivation.ApplicationUserId" class="text-danger" />
+            </div>
+            <div class="mb-3">
+                <label for="startdate" class="form-label">开始日期：</label>
+                <InputDate id="startdate" @bind-Value="Cultivation.StartDate" class="form-control" />
+                <ValidationMessage For="() => Cultivation.StartDate" class="text-danger" />
+            </div>
+            <div class="mb-3">
+                <label for="enddate" class="form-label">结束日期：</label>
+                <InputDate id="enddate" @bind-Value="Cultivation.EndDate" class="form-control" />
+                <ValidationMessage For="() => Cultivation.EndDate" class="text-danger" />
+            </div>
+            <div class="mb-3">
+                <label for="content" class="form-label">内容：</label>
+                <InputText id="content" @bind-Value="Cultivation.Content" class="form-control" />
+                <ValidationMessage For="() => Cultivation.Content" class="text-danger" />
+            </div>
+            <button type="submit" class="btn btn-primary">创建</button>
+            <a href="/cultivationsforsupervisors"><button class="btn btn-primary">返回</button></a>
+        </EditForm>
+    </div>
+</div>
+
+@code{
+    [SupplyParameterFromForm]
+    private Cultivation Cultivation { get; set; } = new();
+    private List<ApplicationUser> Employees { get; set; } = new();
+    protected override async Task OnInitializedAsync()
+    {
+        using var context = DbFactory.CreateDbContext();
+        Employees = await context.Users.ToListAsync();
+    }
+    private async Task AddCultivation()
+    {
+        using var context = DbFactory.CreateDbContext();
+        context.Cultivation.Add(Cultivation);
+        await context.SaveChangesAsync();
+        NavigationManager.NavigateTo("/cultivationsforsupervisors");
+    }
+}

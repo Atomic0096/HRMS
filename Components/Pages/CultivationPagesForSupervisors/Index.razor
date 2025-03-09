@@ -1,0 +1,36 @@
+@page "/cultivationsforsupervisors"
+@using Microsoft.EntityFrameworkCore
+@using Microsoft.AspNetCore.Components.QuickGrid
+@using HRMS.Models
+@using HRMS.Data
+@implements IAsyncDisposable
+@inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
+
+<PageTitle>培训管理</PageTitle>
+
+<h1>培训管理</h1>
+
+<p>
+    <a href="cultivationsforsupervisors/create">新建</a>
+</p>
+
+<QuickGrid Class="table" Items="context.Cultivation.Include(e => e.ApplicationUser).Where(e => e.ApplicationUser != null)">
+    <PropertyColumn Property="cultivation => cultivation.ApplicationUser.Name" Title="姓名" />
+    <PropertyColumn Property="cultivation => cultivation.StartDate" Title="开始日期" />
+    <PropertyColumn Property="cultivation => cultivation.EndDate" Title="结束日期" />
+    <PropertyColumn Property="cultivation => cultivation.IsAccepted" Title="是否接受" />
+
+    <TemplateColumn Context="cultivation">
+        <a href="@($"cultivationsforsupervisors/edit?id={cultivation.Id}")">详情</a> |
+        <a href="@($"cultivationsforsupervisors/delete?id={cultivation.Id}")">删除</a>
+    </TemplateColumn>
+</QuickGrid>
+
+@code{
+    private ApplicationDbContext context = default!;
+    protected override void OnInitialized()
+    {
+        context = DbFactory.CreateDbContext();
+    }
+    public async ValueTask DisposeAsync() => await context.DisposeAsync();
+}
