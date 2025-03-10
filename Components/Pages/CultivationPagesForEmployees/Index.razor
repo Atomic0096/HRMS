@@ -1,0 +1,37 @@
+@page "/cultivationsforemployees"
+@using Microsoft.EntityFrameworkCore
+@using Microsoft.AspNetCore.Components.QuickGrid
+@using HRMS.Models
+@using HRMS.Data
+@using System.Security.Claims
+@implements IAsyncDisposable
+@inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+<PageTitle>培训管理</PageTitle>
+
+<h1>培训管理</h1>
+
+<QuickGrid Class="table" Items="context.Cultivation.Include(e => e.ApplicationUser).Where(m => m.ApplicationUserId == CurrentUserId).Where(e => e.ApplicationUser != null)">
+    <PropertyColumn Property="cultivation => cultivation.ApplicationUser.Name" Title="姓名" />
+    <PropertyColumn Property="cultivation => cultivation.StartDate" Title="开始日期" />
+    <PropertyColumn Property="cultivation => cultivation.EndDate" Title="结束日期" />
+    <PropertyColumn Property="cultivation => cultivation.IsAccepted" Title="是否接受" />
+
+    <TemplateColumn Context="cultivation">
+        <a href="@($"cultivationsforemployees/details?id={cultivation.Id}")">详情</a> |
+        <a href="@($"cultivationsforemployees/edit?id={cultivation.Id}")">编辑</a>
+    </TemplateColumn>
+</QuickGrid>
+
+@code{
+    private ApplicationDbContext context = default!;
+    private string? CurrentUserId;
+    protected override async Task OnInitializedAsync()
+    {
+        context = DbFactory.CreateDbContext();
+        var AuthState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        CurrentUserId = AuthState.User.FindFirstValue(ClaimTypes.NameIdentifier);
+    }
+    public async ValueTask DisposeAsync() => await context.DisposeAsync();
+}
