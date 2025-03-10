@@ -1,0 +1,66 @@
+@page "/cultivationsforsupervisors/delete"
+@using Microsoft.EntityFrameworkCore
+@using HRMS.Models
+@inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<PageTitle>删除培训</PageTitle>
+
+<h1>删除培训</h1>
+
+<div>
+    <hr />
+    @if (cultivation is null)
+    {
+        <p><em>加载中...</em></p>
+    }
+    else{
+        <dl class="row">
+            <dt class="col-sm-2">姓名</dt>
+            <dd class="col-sm-10">@cultivation?.ApplicationUser.Name</dd>
+        </dl>
+        <dl class="row">
+            <dt class="col-sm-2">开始日期</dt>
+            <dd class="col-sm-10">@cultivation.StartDate</dd>
+        </dl>
+        <dl class="row">
+            <dt class="col-sm-2">结束日期</dt>
+            <dd class="col-sm-10">@cultivation.EndDate</dd>
+        </dl>
+        <dl class="row">
+            <dt class="col-sm-2">内容</dt>
+            <dd class="col-sm-10">@cultivation.Content</dd>
+        </dl>
+        <dl class="row">
+            <dt class="col-sm-2">是否接受</dt>
+            <dd class="col-sm-10">@cultivation.IsAccepted</dd>
+        </dl>
+        <EditForm method="post" Model="cultivation" OnValidSubmit="DeleteCultivation" FormName="delete" Emhance>
+            <button type="submit" class="btn btn-danger" disabled="@(cultivation is null || cultivation.IsAccepted == "是" || cultivation.IsAccepted == "否")">删除</button>
+            <a href="/cultivationsforsupervisors"><button class="btn btn-primary">返回</button></a>
+        </EditForm>
+    }
+</div>
+
+@code{
+    private Cultivation? cultivation;
+    [SupplyParameterFromQuery]
+    private int Id { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        using var context = DbFactory.CreateDbContext();
+        cultivation = await context.Cultivation.Include(m => m.ApplicationUser).FirstOrDefaultAsync(m => m.Id == Id);
+
+        if (cultivation is  null)
+        {
+            NavigationManager.NavigateTo("notfound");
+        }
+    }
+    private async Task DeleteCultivation()
+    {
+        using var context = DbFactory.CreateDbContext();
+        context.Cultivation.Remove(cultivation!);
+        await context.SaveChangesAsync();
+        NavigationManager.NavigateTo("/cultivationsforsupervisors");
+    }
+}

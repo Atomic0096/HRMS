@@ -21,7 +21,7 @@
     <PropertyColumn Property="cultivation => cultivation.IsAccepted" Title="是否接受" />
 
     <TemplateColumn Context="cultivation">
-        <a href="@($"cultivationsforsupervisors/edit?id={cultivation.Id}")">详情</a> |
+        <a href="@($"cultivationsforsupervisors/details?id={cultivation.Id}")">详情</a> |
         <a href="@($"cultivationsforsupervisors/delete?id={cultivation.Id}")">删除</a>
     </TemplateColumn>
 </QuickGrid>
