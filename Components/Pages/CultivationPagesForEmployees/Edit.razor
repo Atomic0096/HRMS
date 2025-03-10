@@ -1,0 +1,104 @@
+@page "/cultivationsforemployees/edit"
+@using Microsoft.EntityFrameworkCore
+@using HRMS.Models
+@inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<PageTitle>编辑培训</PageTitle>
+
+<h1>编辑培训</h1>
+<hr />
+@if (Cultivation is null)
+{
+    <p><em>加载中...</em></p>
+}
+else{
+    <div class="row">
+        <div class="col-md-4">
+            <EditForm method="post" Model="Cultivation" OnvalidSubmit="UpdateCultivation" FormName="edit" Enhance>
+                <DataAnnotationsValidator />
+                <ValidationSummary role="alert" />
+                <input type="hidden" name="Cultivation.Id" value="@Cultivation.Id">
+                <div class="mb-3">
+                    <label for="startdate" class="form-label">开始日期：</label>
+                    <InputDate id="startdate" @bind-Value="Cultivation.StartDate" class="form-control" disabled />
+                    <ValidationMessage For="() => Cultivation.StartDate" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="enddate" class="form-label">结束日期：</label>
+                    <InputDate id="enddate" @bind-Value="Cultivation.EndDate" class="form-control" disabled />
+                    <ValidationMessage For="() => Cultivation.EndDate" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="content" class="form-label">内容：</label>
+                    <InputText id="content" @bind-Value="Cultivation.Content" class="form-control" disabled />
+                    <ValidationMessage For="() => Cultivation.Content" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="isaccepted" class="form-label">是否接受：</label>
+                    <InputSelect id="isaccepted" @bind-Value="Cultivation.IsAccepted" class="form-control">
+                        <option value=""></option>
+                        <option value="是">是</option>
+                        <option value="否">否</option>
+                    </InputSelect>
+                    <ValidationMessage For="() => Cultivation.IsAccepted" class="text-danger" />
+                </div>
+                <button type="submit" class="btn btn-primary">保存</button>
+                <a href="/cultivationsforemployees"><button class="btn btn-primary">返回</button></a>
+            </EditForm>
+        </div>
+    </div>
+}
+
+@code{
+    [SupplyParameterFromQuery]
+    private int Id { get; set; }
+    [SupplyParameterFromForm]
+    private Cultivation? Cultivation { get; set; }
+    protected override async Task OnInitializedAsync(){
+        using var context = DbFactory.CreateDbContext();
+        Cultivation ??= await context.Cultivation.FirstOrDefaultAsync(m => m.Id == Id);
+
+        if (Cultivation is null)
+        {
+            NavigationManager.NavigateTo("notfound");
+        }
+    }
+    private async Task UpdateCultivation()
+    {
+        using var context = DbFactory.CreateDbContext();
+        var existingCultivation = await context.Cultivation.FirstOrDefaultAsync(e => e.Id == Id);
+        if(existingCultivation == null)
+        {
+            NavigationManager.NavigateTo("notfound");
+            return;
+        }
+
+        existingCultivation.IsAccepted = Cultivation.IsAccepted;
+
+        try
+        {
+            await context.SaveChangesAsync();
+        }
+        catch (DbUpdateConcurrencyException ex)
+        {
+            var entry = ex.Entries.Single();
+            var databaseValues = await entry.GetDatabaseValuesAsync();
+
+            if (databaseValues == null)
+            {
+                NavigationManager.NavigateTo("notfound");
+                return;
+            }
+            entry.OriginalValues.SetValues(databaseValues);
+            await context.SaveChangesAsync();
+        }
+
+        NavigationManager.NavigateTo("cultivationsforemployees");
+    }
+    private bool CultivationExists(int id)
+    {
+        using var context = DbFactory.CreateDbContext();
+        return context.Cultivation.Any(e => e.Id == id);
+    }
+}

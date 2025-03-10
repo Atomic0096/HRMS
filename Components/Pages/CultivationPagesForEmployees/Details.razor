@@ -1,0 +1,50 @@
+@page "/cultivationsforemployees/details"
+@using Microsoft.EntityFrameworkCore
+@using HRMS.Models
+@inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<PageTitle>培训详情</PageTitle>
+
+<h1>培训详情</h1>
+
+<div>
+    <hr />
+    @if (cultivation is null)
+    {
+        <p><em>加载中...</em></p>
+    }
+    else{
+        <dl class="row">
+            <dt class="col-sm-2">姓名</dt>
+            <dd class="col-sm-10">@cultivation?.ApplicationUser.Name</dd>
+            <dt class="col-sm-2">开始日期</dt>
+            <dd class="col-sm-10">@cultivation.StartDate</dd>
+            <dt class="col-sm-2">结束日期</dt>
+            <dd class="col-sm-10">@cultivation.EndDate</dd>
+            <dt class="col-sm-2">内容</dt>
+            <dd class="col-sm-10">@cultivation.Content</dd>
+            <dt class="col-sm-2">是否接受</dt>
+            <dd class="col-sm-10">@cultivation.IsAccepted</dd>
+        </dl>
+        <div>
+            <a href="@($"/cultivationsforemployees")"><button class="btn btn-primary">返回</button></a>
+        </div>
+    }
+</div>
+
+@code{
+    private Cultivation? cultivation;
+    [SupplyParameterFromQuery]
+    private int Id { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        using var context = DbFactory.CreateDbContext();
+        cultivation = await context.Cultivation.Include(m => m.ApplicationUser).FirstOrDefaultAsync(m => m.Id ==Id);
+
+        if (cultivation is null)
+        {
+            NavigationManager.NavigateTo("notfound");
+        }
+    }
+}

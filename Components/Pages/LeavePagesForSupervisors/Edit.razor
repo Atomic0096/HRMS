@@ -78,24 +78,24 @@ else
             return;
         }
 
-        existingLeave.StartDate = Leave.StartDate;
-        existingLeave.EndDate = Leave.EndDate;
         existingLeave.IsApproved = Leave.IsApproved;
 
         try
         {
             await context.SaveChangesAsync();
         }
-        catch (DbUpdateConcurrencyException)
+        catch (DbUpdateConcurrencyException ex)
         {
-            if (!LeaveExists(Leave!.Id))
+            var entry = ex.Entries.Single();
+            var databaseValues = await entry.GetDatabaseValuesAsync();
+
+            if (databaseValues == null)
             {
                 NavigationManager.NavigateTo("notfound");
+                return;
             }
-            else
-            {
-                throw;
-            }
+            entry.OriginalValues.SetValues(databaseValues);
+            await context.SaveChangesAsync();
         }
 
         NavigationManager.NavigateTo("/leavesforsupervisors");
