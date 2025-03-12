@@ -8,9 +8,9 @@
 @inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
-<PageTitle>培训管理</PageTitle>
+<PageTitle>培训</PageTitle>
 
-<h1>培训管理</h1>
+<h1>培训</h1>
 
 <QuickGrid Class="table" Items="context.Cultivation.Include(e => e.ApplicationUser).Where(m => m.ApplicationUserId == CurrentUserId).Where(e => e.ApplicationUser != null)">
     <PropertyColumn Property="cultivation => cultivation.ApplicationUser.Name" Title="姓名" />

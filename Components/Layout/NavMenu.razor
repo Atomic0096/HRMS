@@ -12,68 +12,131 @@
 
 <div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
     <nav class="nav flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> 首页
-            </NavLink>
-        </div>
-
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
-            </NavLink>
-        </div>
-
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="cultivationsforemployees">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 培训接受
-            </NavLink>
-        </div>
-
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="cultivationsforsupervisors">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 发布培训
-            </NavLink>
-        </div>
-
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="leavesforemployees">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 请假
-            </NavLink>
-        </div>
-
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="leavesforsupervisors">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 请假审批
-            </NavLink>
-        </div>
-
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="employees">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 员工管理
-            </NavLink>
-        </div>
-
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="departments">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 部门管理
-            </NavLink>
-        </div>
-        
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="levels">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 职位管理
-            </NavLink>
-        </div>
-
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="auth">
-                <span class="bi bi-lock-nav-menu" aria-hidden="true"></span> Auth Required
-            </NavLink>
-        </div>
-
-        <AuthorizeView>
+        <AuthorizeView Roles="Admin,Boss,HR,Manager,Employee">
             <Authorized>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                        <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> 首页
+                    </NavLink>
+                </div>
+
+                @if (context.User.IsInRole("Admin"))
+                {
+                    <div class="nav-item px-3">
+                        <NavLink class="nav-link" href="cultivationsforemployees">
+                            <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 培训
+                        </NavLink>
+                    </div>
+
+                    <div class="nav-item px-3">
+                        <NavLink class="nav-link" href="cultivationsforsupervisors">
+                            <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 发布培训
+                        </NavLink>
+                    </div>
+
+                    <div class="nav-item px-3">
+                        <NavLink class="nav-link" href="leavesforemployees">
+                            <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 请假
+                        </NavLink>
+                    </div>
+
+                    <div class="nav-item px-3">
+                        <NavLink class="nav-link" href="leavesforsupervisors">
+                            <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 请假审批
+                        </NavLink>
+                    </div>
+
+                    <div class="nav-item px-3">
+                        <NavLink class="nav-link" href="employees">
+                            <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 员工管理
+                        </NavLink>
+                    </div>
+
+                    <div class="nav-item px-3">
+                        <NavLink class="nav-link" href="departments">
+                            <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 部门管理
+                        </NavLink>
+                    </div>
+                    
+                    <div class="nav-item px-3">
+                        <NavLink class="nav-link" href="levels">
+                            <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 职位管理
+                        </NavLink>
+                    </div>
+                }
+
+                @if (context.User.IsInRole("Boss"))
+                {
+                    <div class="nav-item px-3">
+                        <NavLink class="nav-link" href="employees">
+                            <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 员工管理
+                        </NavLink>
+                    </div>
+
+                    <div class="nav-item px-3">
+                        <NavLink class="nav-link" href="departments">
+                            <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 部门管理
+                        </NavLink>
+                    </div>
+                    
+                    <div class="nav-item px-3">
+                        <NavLink class="nav-link" href="levels">
+                            <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 职位管理
+                        </NavLink>
+                    </div>
+                }
+
+                @if (context.User.IsInRole("HR"))
+                {
+                    <div class="nav-item px-3">
+                        <NavLink class="nav-link" href="leavesforsupervisors">
+                            <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 请假审批
+                        </NavLink>
+                    </div>
+
+                    <div class="nav-item px-3">
+                        <NavLink class="nav-link" href="employees">
+                            <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 员工管理
+                        </NavLink>
+                    </div>
+
+                    <div class="nav-item px-3">
+                        <NavLink class="nav-link" href="departments">
+                            <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 部门管理
+                        </NavLink>
+                    </div>
+                    
+                    <div class="nav-item px-3">
+                        <NavLink class="nav-link" href="levels">
+                            <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 职位管理
+                        </NavLink>
+                    </div>
+                }
+
+                @if (context.User.IsInRole("Manager"))
+                {
+                    <div class="nav-item px-3">
+                        <NavLink class="nav-link" href="cultivationsforsupervisors">
+                            <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 发布培训
+                        </NavLink>
+                    </div>
+                }
+
+                @if (context.User.IsInRole("Employee"))
+                {
+                     <div class="nav-item px-3">
+                        <NavLink class="nav-link" href="cultivationsforemployees">
+                            <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 培训
+                        </NavLink>
+                    </div>
+
+                    <div class="nav-item px-3">
+                        <NavLink class="nav-link" href="leavesforemployees">
+                            <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 请假
+                        </NavLink>
+                    </div>
+                }
+
                 <div class="nav-item px-3">
                     <NavLink class="nav-link" href="Account/Manage">
                         <span class="bi bi-person-fill-nav-menu" aria-hidden="true"></span> @context.User.Identity?.Name
@@ -91,13 +154,32 @@
             </Authorized>
             <NotAuthorized>
                 <div class="nav-item px-3">
-                    <NavLink class="nav-link" href="Account/Register">
-                        <span class="bi bi-person-nav-menu" aria-hidden="true"></span> 注册
+                    <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                        <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> 首页
                     </NavLink>
                 </div>
+
                 <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="counter">
+                        <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
+                    </NavLink>
+                </div>
+
+                 <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="auth">
+                        <span class="bi bi-lock-nav-menu" aria-hidden="true"></span> 需要权限
+                    </NavLink>
+                </div>
+
+                 <div class="nav-item px-3">
                     <NavLink class="nav-link" href="Account/Login">
                         <span class="bi bi-person-badge-nav-menu" aria-hidden="true"></span> 登录
+                    </NavLink>
+                </div>
+
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="Account/Register">
+                        <span class="bi bi-person-nav-menu" aria-hidden="true"></span> 注册
                     </NavLink>
                 </div>
             </NotAuthorized>
