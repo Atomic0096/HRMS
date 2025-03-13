@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\HRMS.ylhpgz766k.bundle.scp.css"
     },
     {
+      "Id": "G:\\HRMS\\wwwroot\\SMU.svg",
+      "PackagePath": "staticwebassets\\SMU.svg"
+    },
+    {
       "Id": "G:\\HRMS\\wwwroot\\app.css",
       "PackagePath": "staticwebassets\\app.css"
     },

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "1UioQRkRN6K+XT7hKlf3mSD3s9njfNit8O0HaYyf2/4=",
+  "Hash": "ILzA6RhaevjE485kxsMVtVdezCb/t8mlvCtjNmTh888=",
   "Source": "HRMS",
   "BasePath": "_content/HRMS",
   "Mode": "Default",
@@ -2304,6 +2304,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\29742\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\9.0.2\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Identity": "G:\\HRMS\\obj\\Debug\\net9.0\\compressed\\d6rqzcrndk-we0o26w0gx.gz",
+      "SourceId": "HRMS",
+      "SourceType": "Discovered",
+      "ContentRoot": "G:\\HRMS\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/HRMS",
+      "RelativePath": "SMU#[.{fingerprint=we0o26w0gx}]?.svg.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "G:\\HRMS\\wwwroot\\SMU.svg",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "3mzmkxy63s",
+      "Integrity": "y7VYTjg2tYdQ+iGNQso9eG1t3MUMBxf+Td7OpsAYNcw=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "G:\\HRMS\\wwwroot\\SMU.svg"
     },
     {
       "Identity": "G:\\HRMS\\obj\\Debug\\net9.0\\compressed\\eb27mqwgz2-erw9l3u2r3.gz",
@@ -4719,6 +4740,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Identity": "G:\\HRMS\\wwwroot\\SMU.svg",
+      "SourceId": "HRMS",
+      "SourceType": "Discovered",
+      "ContentRoot": "G:\\HRMS\\wwwroot\\",
+      "BasePath": "_content/HRMS",
+      "RelativePath": "SMU#[.{fingerprint}]?.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "we0o26w0gx",
+      "Integrity": "GDJK5AHt1KZpUhTd1ke27a1vLDHNcXShgCbfKMlXcO8=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\SMU.svg"
     }
   ],
   "Endpoints": [
@@ -30012,6 +30054,304 @@
         {
           "Name": "integrity",
           "Value": "sha256-hjIBkvmgxQXbNXK3B9YQ3t06RwLuQSQzC/dpvuB/lMk="
+        }
+      ]
+    },
+    {
+      "Route": "SMU.svg",
+      "AssetFile": "G:\\HRMS\\obj\\Debug\\net9.0\\compressed\\d6rqzcrndk-we0o26w0gx.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000070671378"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "14149"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"y7VYTjg2tYdQ+iGNQso9eG1t3MUMBxf+Td7OpsAYNcw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 13 Mar 2025 13:58:36 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/svg+xml"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"GDJK5AHt1KZpUhTd1ke27a1vLDHNcXShgCbfKMlXcO8=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-GDJK5AHt1KZpUhTd1ke27a1vLDHNcXShgCbfKMlXcO8="
+        }
+      ]
+    },
+    {
+      "Route": "SMU.svg",
+      "AssetFile": "G:\\HRMS\\wwwroot\\SMU.svg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "40589"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/svg+xml"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"GDJK5AHt1KZpUhTd1ke27a1vLDHNcXShgCbfKMlXcO8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 13 Mar 2025 13:58:36 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-GDJK5AHt1KZpUhTd1ke27a1vLDHNcXShgCbfKMlXcO8="
+        }
+      ]
+    },
+    {
+      "Route": "SMU.svg.gz",
+      "AssetFile": "G:\\HRMS\\obj\\Debug\\net9.0\\compressed\\d6rqzcrndk-we0o26w0gx.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "14149"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/svg+xml"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"y7VYTjg2tYdQ+iGNQso9eG1t3MUMBxf+Td7OpsAYNcw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 13 Mar 2025 13:58:36 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-y7VYTjg2tYdQ+iGNQso9eG1t3MUMBxf+Td7OpsAYNcw="
+        }
+      ]
+    },
+    {
+      "Route": "SMU.we0o26w0gx.svg",
+      "AssetFile": "G:\\HRMS\\obj\\Debug\\net9.0\\compressed\\d6rqzcrndk-we0o26w0gx.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000070671378"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "14149"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"y7VYTjg2tYdQ+iGNQso9eG1t3MUMBxf+Td7OpsAYNcw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 13 Mar 2025 13:58:36 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/svg+xml"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"GDJK5AHt1KZpUhTd1ke27a1vLDHNcXShgCbfKMlXcO8=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "we0o26w0gx"
+        },
+        {
+          "Name": "label",
+          "Value": "SMU.svg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-GDJK5AHt1KZpUhTd1ke27a1vLDHNcXShgCbfKMlXcO8="
+        }
+      ]
+    },
+    {
+      "Route": "SMU.we0o26w0gx.svg",
+      "AssetFile": "G:\\HRMS\\wwwroot\\SMU.svg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "40589"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/svg+xml"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"GDJK5AHt1KZpUhTd1ke27a1vLDHNcXShgCbfKMlXcO8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 13 Mar 2025 13:58:36 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "we0o26w0gx"
+        },
+        {
+          "Name": "label",
+          "Value": "SMU.svg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-GDJK5AHt1KZpUhTd1ke27a1vLDHNcXShgCbfKMlXcO8="
+        }
+      ]
+    },
+    {
+      "Route": "SMU.we0o26w0gx.svg.gz",
+      "AssetFile": "G:\\HRMS\\obj\\Debug\\net9.0\\compressed\\d6rqzcrndk-we0o26w0gx.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "14149"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/svg+xml"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"y7VYTjg2tYdQ+iGNQso9eG1t3MUMBxf+Td7OpsAYNcw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 13 Mar 2025 13:58:36 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "we0o26w0gx"
+        },
+        {
+          "Name": "label",
+          "Value": "SMU.svg.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-y7VYTjg2tYdQ+iGNQso9eG1t3MUMBxf+Td7OpsAYNcw="
         }
       ]
     }
