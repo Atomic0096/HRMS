@@ -292,24 +292,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xMZXZlbFBhZ2VzXEluZGV4LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Pages/RecruitmentPages/Create.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xSZWNydWl0bWVudFBhZ2VzXENyZWF0ZS5yYXpvcg==
+[G:/HRMS/Components/Pages/RecruitmentPagesForManager/Create.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xSZWNydWl0bWVudFBhZ2VzRm9yTWFuYWdlclxDcmVhdGUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Pages/RecruitmentPages/Delete.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xSZWNydWl0bWVudFBhZ2VzXERlbGV0ZS5yYXpvcg==
+[G:/HRMS/Components/Pages/RecruitmentPagesForManager/Delete.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xSZWNydWl0bWVudFBhZ2VzRm9yTWFuYWdlclxEZWxldGUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Pages/RecruitmentPages/Details.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xSZWNydWl0bWVudFBhZ2VzXERldGFpbHMucmF6b3I=
+[G:/HRMS/Components/Pages/RecruitmentPagesForManager/Details.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xSZWNydWl0bWVudFBhZ2VzRm9yTWFuYWdlclxEZXRhaWxzLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Pages/RecruitmentPages/Edit.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xSZWNydWl0bWVudFBhZ2VzXEVkaXQucmF6b3I=
+[G:/HRMS/Components/Pages/RecruitmentPagesForManager/Edit.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xSZWNydWl0bWVudFBhZ2VzRm9yTWFuYWdlclxFZGl0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Pages/RecruitmentPages/Index.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xSZWNydWl0bWVudFBhZ2VzXEluZGV4LnJhem9y
+[G:/HRMS/Components/Pages/RecruitmentPagesForManager/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xSZWNydWl0bWVudFBhZ2VzRm9yTWFuYWdlclxJbmRleC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [G:/HRMS/Components/Pages/Weather.razor]

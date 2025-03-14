@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using HRMS.Data;
 
 namespace HRMS.Models;
 
@@ -24,4 +25,7 @@ public class Recruitment
     [Range(1,int.MaxValue)]
     public int? LevelId { get; set; }//职位
     public Level? Level { get; set; }
+
+    public string? ApplicationUserId { get; set; }//员工
+    public ApplicationUser? ApplicationUser { get; set; }
 }

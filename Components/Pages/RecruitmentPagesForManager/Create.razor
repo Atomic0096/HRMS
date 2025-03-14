@@ -1,0 +1,88 @@
+@page "/recruitmentsformanagers/create"
+@using Microsoft.EntityFrameworkCore
+@using HRMS.Models
+@using System.Security.Claims
+@inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
+@inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+<PageTitle>创建招募</PageTitle>
+
+<h1>创建招募</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <EditForm method="post" Model="Recruitment" OnValidSubmit="AddRecruitment" FormName="create" Enhance>
+            <DataAnnotationsValidator />
+            <ValidationSummary class="text-danger" role="alert"/>
+            <input type="hidden" name="Recruitment.ApplicationUserId" value="@Recruitment.ApplicationUserId">
+            <div class="mb-3">
+                <label for="departmentid" class="form-label">部门：</label>
+                <InputSelect id="departmentid" @bind-Value="Recruitment.DepartmentId" class="form-control">
+                    <option value="">-- 选择部门 --</option>
+                    @foreach (var department in Departments)
+                    {
+                        <option value="@department.Id">@department.DepartmentName</option>
+                    }
+                </InputSelect>
+                <ValidationMessage For="() => Recruitment.DepartmentId" class="text-danger" />
+            </div>
+            <div class="mb-3">
+                <label for="levelid" class="form-label">职位：</label>
+                <InputSelect id="levelid" @bind-Value="Recruitment.LevelId" class="form-control">
+                    <option value="">-- 选择职位 --</option>
+                    @foreach (var level in Levels)
+                    {
+                        <option value="@level.Id">@level.LevelName</option>
+                    }
+                </InputSelect>
+                <ValidationMessage For="() => Recruitment.LevelId" class="text-danger" />
+            </div>
+            <div class="mb-3">
+                <label for="bottomsalary" class="form-label">最低薪资：</label> 
+                <InputNumber id="bottomsalary" @bind-Value="Recruitment.BottomSalary" class="form-control" /> 
+                <ValidationMessage For="() => Recruitment.BottomSalary" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="topsalary" class="form-label">最高薪资：</label> 
+                <InputNumber id="topsalary" @bind-Value="Recruitment.TopSalary" class="form-control" /> 
+                <ValidationMessage For="() => Recruitment.TopSalary" class="text-danger" /> 
+            </div>  
+            <div class="mb-3">
+                <label for="description" class="form-label">描述：</label> 
+                <InputText id="description" @bind-Value="Recruitment.Description" class="form-control" /> 
+                <ValidationMessage For="() => Recruitment.Description" class="text-danger" /> 
+            </div>                                     
+            <button type="submit" class="btn btn-primary">创建</button>
+            <a href="/recruitmentsformanagers"><button class="btn btn-primary">返回</button></a>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    [SupplyParameterFromForm]
+    private Recruitment Recruitment { get; set; } = new();
+    private List<Department> Departments { get; set; } = new();
+    private List<Level> Levels { get; set; } = new();
+    // To protect from overposting attacks, see https://learn.microsoft.com/aspnet/core/blazor/forms/#mitigate-overposting-attacks.
+    protected override async Task OnInitializedAsync()
+    {
+        using var context = DbFactory.CreateDbContext();
+        Departments = await context.Department.ToListAsync();
+        Levels = await context.Level.ToListAsync();
+        var AuthState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        Recruitment.ApplicationUserId = AuthState.User.FindFirstValue(ClaimTypes.NameIdentifier);
+        if (Recruitment.ApplicationUserId is null)
+        {
+            NavigationManager.NavigateTo("notfound");
+        }
+    }
+    private async Task AddRecruitment()
+    {
+        using var context = DbFactory.CreateDbContext();
+        context.Recruitment.Add(Recruitment);
+        await context.SaveChangesAsync();
+        NavigationManager.NavigateTo("/recruitmentsformanagers");
+    }
+}

@@ -1,0 +1,134 @@
+@page "/recruitmentsformanagers/edit"
+@using Microsoft.EntityFrameworkCore
+@using HRMS.Models
+@inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<PageTitle>编辑招募</PageTitle>
+
+<h1>编辑招募</h1>
+
+<hr />
+@if (Recruitment is null)
+{
+    <p><em>加载中...</em></p>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-4">
+            <EditForm method="post" Model="Recruitment" OnValidSubmit="UpdateRecruitment" FormName="edit" Enhance>
+                <DataAnnotationsValidator />
+                <ValidationSummary role="alert"/>
+                <input type="hidden" name="Recruitment.Id" value="@Recruitment.Id" />
+                 <div class="mb-3">
+                <label for="departmentid" class="form-label">部门：</label>
+                <InputSelect id="departmentid" @bind-Value="Recruitment.DepartmentId" class="form-control">
+                    <option value="">-- 选择部门 --</option>
+                    @foreach (var department in Departments)
+                    {
+                        <option value="@department.Id">@department.DepartmentName</option>
+                    }
+                </InputSelect>
+                <ValidationMessage For="() => Recruitment.DepartmentId" class="text-danger" />
+            </div>
+            <div class="mb-3">
+                <label for="levelid" class="form-label">职位：</label>
+                <InputSelect id="levelid" @bind-Value="Recruitment.LevelId" class="form-control">
+                    <option value="">-- 选择职位 --</option>
+                    @foreach (var level in Levels)
+                    {
+                        <option value="@level.Id">@level.LevelName</option>
+                    }
+                </InputSelect>
+                <ValidationMessage For="() => Recruitment.LevelId" class="text-danger" />
+            </div>
+                <div class="mb-3">
+                    <label for="bottomsalary" class="form-label">最低薪资：</label>
+                    <InputNumber id="bottomsalary" @bind-Value="Recruitment.BottomSalary" class="form-control" />
+                    <ValidationMessage For="() => Recruitment.BottomSalary" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="topsalary" class="form-label">最高薪资：</label>
+                    <InputNumber id="topsalary" @bind-Value="Recruitment.TopSalary" class="form-control" />
+                    <ValidationMessage For="() => Recruitment.TopSalary" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">描述：</label>
+                    <InputText id="description" @bind-Value="Recruitment.Description" class="form-control" />
+                    <ValidationMessage For="() => Recruitment.Description" class="text-danger" />
+                </div>
+                <button type="submit" class="btn btn-primary">保存</button>
+                <a href="/recruitmentsformanagers"><button class="btn btn-primary">返回</button></a>
+            </EditForm>
+        </div>
+    </div>
+}
+
+@code {
+    [SupplyParameterFromQuery]
+    private int Id { get; set; }
+
+    [SupplyParameterFromForm]
+    private Recruitment? Recruitment { get; set; }
+    private List<Department> Departments { get; set; } = new();
+    private List<Level> Levels { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        using var context = DbFactory.CreateDbContext();
+        Departments = await context.Department.ToListAsync();
+        Levels = await context.Level.ToListAsync();
+        Recruitment ??= await context.Recruitment.FirstOrDefaultAsync(m => m.Id == Id);
+
+        if (Recruitment is null)
+        {
+            NavigationManager.NavigateTo("notfound");
+        }
+    }
+
+    // To protect from overposting attacks, enable the specific properties you want to bind to.
+    // For more information, see https://learn.microsoft.com/aspnet/core/blazor/forms/#mitigate-overposting-attacks.
+    private async Task UpdateRecruitment()
+    {
+        using var context = DbFactory.CreateDbContext();
+        var existingRecruitment = await context.Recruitment.FirstOrDefaultAsync(u => u.Id ==Id);
+        if (existingRecruitment is null)
+        {
+            NavigationManager.NavigateTo("notfound");
+            return;
+        }
+
+        existingRecruitment.DepartmentId = Recruitment.DepartmentId;
+        existingRecruitment.LevelId = Recruitment.LevelId;
+        existingRecruitment.BottomSalary = Recruitment.BottomSalary;
+        existingRecruitment.TopSalary = Recruitment.TopSalary;
+        existingRecruitment.Description = Recruitment.Description;
+
+        try
+        {
+            await context.SaveChangesAsync();
+        }
+        catch (DbUpdateConcurrencyException ex)
+        {
+            var entry = ex.Entries.Single();
+            var databaseValues = await entry.GetDatabaseValuesAsync();
+
+            if (databaseValues == null)
+            {
+                NavigationManager.NavigateTo("notfound");
+                return;
+            }
+            entry.OriginalValues.SetValues(databaseValues);
+            await context.SaveChangesAsync();
+        }
+
+        NavigationManager.NavigateTo("/recruitmentsformanagers");
+    }
+
+    private bool RecruitmentExists(int id)
+    {
+        using var context = DbFactory.CreateDbContext();
+        return context.Recruitment.Any(e => e.Id == id);
+    }
+}
