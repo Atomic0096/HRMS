@@ -1,0 +1,56 @@
+@page "/recruitmentsforhrs/details"
+@using Microsoft.EntityFrameworkCore
+@using HRMS.Models
+@inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<PageTitle>招募详情</PageTitle>
+
+<h1>招募详情</h1>
+
+<div>
+    <hr />
+    @if (recruitment is null)
+    {
+        <p><em>加载中...</em></p>
+    }
+    else {
+        <dl class="row">
+            <dt class="col-sm-2">部门</dt>
+            <dd class="col-sm-10">@recruitment.Department?.DepartmentName</dd>
+            <dt class="col-sm-2">职位</dt>
+            <dd class="col-sm-10">@recruitment.Level?.LevelName</dd>
+            <dt class="col-sm-2">最低薪资</dt>
+            <dd class="col-sm-10">@recruitment.BottomSalary</dd>
+            <dt class="col-sm-2">最高薪资</dt>
+            <dd class="col-sm-10">@recruitment.TopSalary</dd>
+            <dt class="col-sm-2">描述</dt>
+            <dd class="col-sm-10">@recruitment.Description</dd>
+            
+        </dl>
+        <div>
+            <a href="@($"/recruitmentsforhrs")"><button class="btn btn-primary">返回</button></a>
+        </div>
+    }
+</div>
+
+@code {
+    private Recruitment? recruitment;
+
+    [SupplyParameterFromQuery]
+    private int Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        using var context = DbFactory.CreateDbContext();
+        recruitment = await context.Recruitment
+            .Include(m => m.Department)
+            .Include(m => m.Level)
+            .FirstOrDefaultAsync(m => m.Id == Id);
+
+        if (recruitment is null)
+        {
+            NavigationManager.NavigateTo("notfound");
+        }
+    }
+}

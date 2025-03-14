@@ -23,20 +23,32 @@
                 @if (context.User.IsInRole("Admin"))
                 {
                     <div class="nav-item px-3">
+                        <NavLink class="nav-link" href="cultivationsforsupervisors">
+                            <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> 发布培训
+                        </NavLink>
+                    </div>
+                    
+                    <div class="nav-item px-3">
                         <NavLink class="nav-link" href="cultivationsforemployees">
                             <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 培训
                         </NavLink>
                     </div>
 
                     <div class="nav-item px-3">
-                        <NavLink class="nav-link" href="cultivationsforsupervisors">
-                            <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 发布培训
+                        <NavLink class="nav-link" href="recruitmentsformanagers">
+                            <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> 发布招募
                         </NavLink>
                     </div>
 
                     <div class="nav-item px-3">
+                        <NavLink class="nav-link" href="recruitmentsforhrs">
+                            <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 招募管理
+                        </NavLink>
+                    </div>
+                    
+                    <div class="nav-item px-3">
                         <NavLink class="nav-link" href="leavesforemployees">
-                            <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 请假
+                            <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> 请假
                         </NavLink>
                     </div>
 
@@ -84,6 +96,12 @@
                             <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 职位管理
                         </NavLink>
                     </div>
+
+                    <div class="nav-item px-3">
+                        <NavLink class="nav-link" href="recruitmentsforhrs">
+                            <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 招募管理
+                        </NavLink>
+                    </div>
                 }
 
                 @if (context.User.IsInRole("HR"))
@@ -91,6 +109,12 @@
                     <div class="nav-item px-3">
                         <NavLink class="nav-link" href="leavesforsupervisors">
                             <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 请假审批
+                        </NavLink>
+                    </div>
+
+                    <div class="nav-item px-3">
+                        <NavLink class="nav-link" href="recruitmentsforhrs">
+                            <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 招募管理
                         </NavLink>
                     </div>
 
@@ -117,22 +141,28 @@
                 {
                     <div class="nav-item px-3">
                         <NavLink class="nav-link" href="cultivationsforsupervisors">
-                            <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 发布培训
+                            <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> 发布培训
+                        </NavLink>
+                    </div>
+
+                    <div class="nav-item px-3">
+                        <NavLink class="nav-link" href="recruitmentsformanagers">
+                            <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> 发布招募
                         </NavLink>
                     </div>
                 }
 
                 @if (context.User.IsInRole("Employee"))
                 {
-                     <div class="nav-item px-3">
-                        <NavLink class="nav-link" href="cultivationsforemployees">
-                            <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 培训
+                    <div class="nav-item px-3">
+                        <NavLink class="nav-link" href="leavesforemployees">
+                            <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> 请假
                         </NavLink>
                     </div>
 
-                    <div class="nav-item px-3">
-                        <NavLink class="nav-link" href="leavesforemployees">
-                            <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 请假
+                     <div class="nav-item px-3">
+                        <NavLink class="nav-link" href="cultivationsforemployees">
+                            <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 培训
                         </NavLink>
                     </div>
                 }
@@ -156,12 +186,6 @@
                 <div class="nav-item px-3">
                     <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
                         <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> 首页
-                    </NavLink>
-                </div>
-
-                <div class="nav-item px-3">
-                    <NavLink class="nav-link" href="counter">
-                        <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
                     </NavLink>
                 </div>
 

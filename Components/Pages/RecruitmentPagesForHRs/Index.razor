@@ -1,0 +1,40 @@
+@page "/recruitmentsforhrs"
+@using Microsoft.EntityFrameworkCore
+@using Microsoft.AspNetCore.Components.QuickGrid
+@using HRMS.Models
+@using HRMS.Data
+@using System.Security.Claims
+@implements IAsyncDisposable
+@inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+<PageTitle>招募管理</PageTitle>
+
+<h1>招募管理</h1>
+
+<QuickGrid Class="table" Items="context.Recruitment.Include(m => m.Department).Include(m => m.Level).Where(u => u.ApplicationUser != null)">
+    <PropertyColumn Property="recruitment => recruitment.Department.DepartmentName" Title="部门" />
+    <PropertyColumn Property="recruitment => recruitment.Level.LevelName" Title="职位" />
+    <PropertyColumn Property="recruitment => recruitment.BottomSalary" Title="最低薪资" />
+    <PropertyColumn Property="recruitment => recruitment.TopSalary" Title="最高薪资" />
+    <PropertyColumn Property="recruitment => recruitment.Description" Title="描述" />
+
+    <TemplateColumn Context="recruitment">
+        <a href="@($"recruitmentsforhrs/details?id={recruitment.Id}")">详情</a> |
+        <a href="@($"recruitmentsforhrs/delete?id={recruitment.Id}")">删除</a>
+    </TemplateColumn>
+</QuickGrid>
+
+@code {
+    private ApplicationDbContext context = default!;
+    private string? CurrentUserId;
+
+    protected override async Task OnInitializedAsync()
+    {
+        context = DbFactory.CreateDbContext();
+        var AuthState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        CurrentUserId = AuthState.User.FindFirstValue(ClaimTypes.NameIdentifier);
+    }
+
+    public async ValueTask DisposeAsync() => await context.DisposeAsync();
+}

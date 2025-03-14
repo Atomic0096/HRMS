@@ -292,6 +292,18 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xMZXZlbFBhZ2VzXEluZGV4LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[G:/HRMS/Components/Pages/RecruitmentPagesForHRs/Delete.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xSZWNydWl0bWVudFBhZ2VzRm9ySFJzXERlbGV0ZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/HRMS/Components/Pages/RecruitmentPagesForHRs/Details.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xSZWNydWl0bWVudFBhZ2VzRm9ySFJzXERldGFpbHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/HRMS/Components/Pages/RecruitmentPagesForHRs/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xSZWNydWl0bWVudFBhZ2VzRm9ySFJzXEluZGV4LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [G:/HRMS/Components/Pages/RecruitmentPagesForManager/Create.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xSZWNydWl0bWVudFBhZ2VzRm9yTWFuYWdlclxDcmVhdGUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
