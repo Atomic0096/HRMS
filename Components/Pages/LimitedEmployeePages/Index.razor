@@ -1,4 +1,4 @@
-@page "/employees"
+@page "/limitedemployees"
 @using Microsoft.EntityFrameworkCore
 @using Microsoft.AspNetCore.Components.QuickGrid
 @using HRMS.Models
@@ -6,11 +6,11 @@
 @implements IAsyncDisposable
 @inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
 
-<PageTitle>员工管理</PageTitle>
+<PageTitle>同事</PageTitle>
 
-<h1>员工管理</h1>
+<h1>同事</h1>
 <div>
-    <form action="/employees" date-enhance>
+    <form action="/limitedemployees" date-enhance>
         <input type="search" name="nameFilter" />
         <input type="submit" value="搜索" />
     </form>
@@ -19,15 +19,8 @@
 <QuickGrid Class="table" Items="FilteredEmployees" Pagination="pagination">
     <PropertyColumn Property="user => user.Name" Title="姓名" />
     <PropertyColumn Property="user => user.Gender" Title="性别" />
-    <PropertyColumn Property="user => user.DateOfBirth" Title="出生日期" />
     <PropertyColumn Property="user => user.Department.DepartmentName" Title="部门" />
     <PropertyColumn Property="user => user.Level.LevelName" Title="职位" />
-    <PropertyColumn Property="user => user.DateOfEntry" Title="入职日期" />
-    <PropertyColumn Property="user => user.Salary" Title="薪资" />
-
-    <TemplateColumn Context="employee">
-        <a href="@($"employees/edit?id={employee.Id}")">编辑</a>
-    </TemplateColumn>
 </QuickGrid>
 <Paginator State="pagination" />
 

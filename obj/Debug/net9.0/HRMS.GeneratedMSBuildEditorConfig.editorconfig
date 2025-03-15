@@ -292,6 +292,26 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xMZXZlbFBhZ2VzXEluZGV4LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[G:/HRMS/Components/Pages/LimitedDepartmentPages/Details.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xMaW1pdGVkRGVwYXJ0bWVudFBhZ2VzXERldGFpbHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/HRMS/Components/Pages/LimitedDepartmentPages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xMaW1pdGVkRGVwYXJ0bWVudFBhZ2VzXEluZGV4LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/HRMS/Components/Pages/LimitedEmployeePages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xMaW1pdGVkRW1wbG95ZWVQYWdlc1xJbmRleC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/HRMS/Components/Pages/LimitedLevelPages/Details.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xMaW1pdGVkTGV2ZWxQYWdlc1xEZXRhaWxzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/HRMS/Components/Pages/LimitedLevelPages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xMaW1pdGVkTGV2ZWxQYWdlc1xJbmRleC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [G:/HRMS/Components/Pages/RecruitmentPagesForHRs/Delete.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xSZWNydWl0bWVudFBhZ2VzRm9ySFJzXERlbGV0ZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 

@@ -1,0 +1,56 @@
+@page "/limiteddepartments/details"
+@using Microsoft.EntityFrameworkCore
+@using Microsoft.AspNetCore.Components.QuickGrid
+@using HRMS.Data
+@using HRMS.Models
+@inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<PageTitle>部门详情</PageTitle>
+
+<h1>部门详情</h1>
+
+<div>
+    <hr />
+    @if (department is null)
+    {
+        <p><em>加载中...</em></p>
+    }
+    else {
+        <dl class="row">
+            <dt class="col-sm-2">部门名称</dt>
+            <dd class="col-sm-10">@department.DepartmentName</dd>
+        </dl>
+        <QuickGrid Class="table" Items="context.Users.Include(m => m.Level).Where(m => m.DepartmentId == department.Id)">
+            <PropertyColumn Property="user => user.Name" Title="姓名" />
+            <PropertyColumn Property="user => user.Gender" Title="性别" />
+            <PropertyColumn Property="user => user.Level.LevelName" Title="职位" />
+        </QuickGrid>
+        <div>
+            <a href="@($"/limiteddepartments")"><button class="btn btn-primary">返回</button></a>
+        </div>
+    }
+</div>
+
+@code {
+    private ApplicationDbContext context = default!;
+    private Department? department;
+
+    [SupplyParameterFromQuery]
+    private int Id { get; set; }
+    protected override void OnInitialized()
+    {
+        context = DbFactory.CreateDbContext();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        using var context = DbFactory.CreateDbContext();
+        department = await context.Department.FirstOrDefaultAsync(m => m.Id == Id);
+
+        if (department is null)
+        {
+            NavigationManager.NavigateTo("notfound");
+        }
+    }
+}

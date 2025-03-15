@@ -1,0 +1,30 @@
+@page "/limiteddepartments"
+@using Microsoft.EntityFrameworkCore
+@using Microsoft.AspNetCore.Components.QuickGrid
+@using HRMS.Models
+@using HRMS.Data
+@implements IAsyncDisposable
+@inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
+
+<PageTitle>部门</PageTitle>
+
+<h1>部门</h1>
+
+<QuickGrid Class="table" Items="context.Department">
+    <PropertyColumn Property="department => department.DepartmentName" Title="部门名称" />
+
+    <TemplateColumn Context="department">
+        <a href="@($"limiteddepartments/details?id={department.Id}")">详情</a>
+    </TemplateColumn>
+</QuickGrid>
+
+@code {
+    private ApplicationDbContext context = default!;
+
+    protected override void OnInitialized()
+    {
+        context = DbFactory.CreateDbContext();
+    }
+
+    public async ValueTask DisposeAsync() => await context.DisposeAsync();
+}

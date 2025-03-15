@@ -1,0 +1,30 @@
+@page "/limitedlevels"
+@using Microsoft.EntityFrameworkCore
+@using Microsoft.AspNetCore.Components.QuickGrid
+@using HRMS.Models
+@using HRMS.Data
+@implements IAsyncDisposable
+@inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
+
+<PageTitle>职位</PageTitle>
+
+<h1>职位</h1>
+
+<QuickGrid Class="table" Items="context.Level">
+    <PropertyColumn Property="level => level.LevelName" Title="职位名称" />
+
+    <TemplateColumn Context="level">
+        <a href="@($"limitedlevels/details?id={level.Id}")">详情</a>
+    </TemplateColumn>
+</QuickGrid>
+
+@code {
+    private ApplicationDbContext context = default!;
+
+    protected override void OnInitialized()
+    {
+        context = DbFactory.CreateDbContext();
+    }
+
+    public async ValueTask DisposeAsync() => await context.DisposeAsync();
+}
