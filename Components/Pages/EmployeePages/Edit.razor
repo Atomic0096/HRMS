@@ -1,9 +1,11 @@
 @page "/employees/edit"
+@using Microsoft.AspNetCore.Authorization
 @using Microsoft.EntityFrameworkCore
 @using HRMS.Models
 @using HRMS.Data
 @inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
 @inject NavigationManager NavigationManager
+@attribute [Authorize(Roles = "Admin,Boss,HR")]
 
 <PageTitle>编辑员工</PageTitle>
 

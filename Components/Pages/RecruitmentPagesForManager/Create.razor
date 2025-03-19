@@ -1,10 +1,12 @@
 @page "/recruitmentsformanagers/create"
+@using Microsoft.AspNetCore.Authorization
 @using Microsoft.EntityFrameworkCore
 @using HRMS.Models
 @using System.Security.Claims
 @inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
 @inject NavigationManager NavigationManager
 @inject AuthenticationStateProvider AuthenticationStateProvider
+@attribute [Authorize(Roles = "Admin,Manager")]
 
 <PageTitle>创建招募</PageTitle>
 

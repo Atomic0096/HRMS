@@ -1,4 +1,5 @@
 @page "/leavesforemployees"
+@using Microsoft.AspNetCore.Authorization
 @using Microsoft.EntityFrameworkCore
 @using Microsoft.AspNetCore.Components.QuickGrid
 @using HRMS.Models
@@ -7,6 +8,7 @@
 @implements IAsyncDisposable
 @inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
 @inject AuthenticationStateProvider AuthenticationStateProvider
+@attribute [Authorize(Roles = "Admin,Employee")]
 
 <PageTitle>请假</PageTitle>
 

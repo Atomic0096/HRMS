@@ -1,9 +1,11 @@
 @page "/cultivationsforsupervisors/create"
+@using Microsoft.AspNetCore.Authorization
 @using Microsoft.EntityFrameworkCore
 @using HRMS.Models
 @using HRMS.Data
 @inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
 @inject NavigationManager NavigationManager
+@attribute [Authorize(Roles = "Admin,Manager")]
 
 <PageTitle>新建培训</PageTitle>
 

@@ -1,8 +1,10 @@
 @page "/cultivationsforsupervisors/delete"
+@using Microsoft.AspNetCore.Authorization
 @using Microsoft.EntityFrameworkCore
 @using HRMS.Models
 @inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
 @inject NavigationManager NavigationManager
+@attribute [Authorize(Roles = "Admin,Manager")]
 
 <PageTitle>删除培训</PageTitle>
 

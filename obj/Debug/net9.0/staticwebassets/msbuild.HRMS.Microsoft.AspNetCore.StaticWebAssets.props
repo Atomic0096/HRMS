@@ -858,8 +858,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>we0o26w0gx</Fingerprint>
-      <Integrity>GDJK5AHt1KZpUhTd1ke27a1vLDHNcXShgCbfKMlXcO8=</Integrity>
+      <Fingerprint>jap0ms78e3</Fingerprint>
+      <Integrity>9UnszZS1WCyCGAOdCbTI8XfaBFqpxwKg5421XNfLMdM=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\SMU.svg'))</OriginalItemSpec>

@@ -1,10 +1,12 @@
 @page "/limiteddepartments/details"
+@using Microsoft.AspNetCore.Authorization
 @using Microsoft.EntityFrameworkCore
 @using Microsoft.AspNetCore.Components.QuickGrid
 @using HRMS.Data
 @using HRMS.Models
 @inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
 @inject NavigationManager NavigationManager
+@attribute [Authorize(Roles = "Admin,Manager,Employee")]
 
 <PageTitle>部门详情</PageTitle>
 
