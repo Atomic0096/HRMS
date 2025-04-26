@@ -37,4 +37,5 @@ public class ApplicationUser : IdentityUser
     //被发现
     public ICollection<Cultivation> Cultivations { get; } = [];
     public ICollection<Leave> Leaves { get; } = [];
+    public ICollection<Assignment> Assignments { get; } = [];
 }
