@@ -1,0 +1,36 @@
+@page "/reimbursementsforfinance"
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.EntityFrameworkCore
+@using Microsoft.AspNetCore.Components.QuickGrid
+@using HRMS.Models
+@using HRMS.Data
+@implements IAsyncDisposable
+@inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
+@attribute [Authorize(Roles = "Admin,Finance")]
+
+<PageTitle>报销审批</PageTitle>
+
+<h1>报销审批</h1>
+
+<QuickGrid Class="table" Items="context.Reimbursement.Include(r => r.ApplicationUser).Where(r => r.ApplicationUser != null)">
+    <PropertyColumn Property="reimbursement => reimbursement.Date" Title="日期" />
+    <PropertyColumn Property="reimbursement => reimbursement.Type" Title="类型" />
+    <PropertyColumn Property="reimbursement => reimbursement.Amount" Title="金额" />
+    <PropertyColumn Property="reimbursement => reimbursement.ApplicationUser.Name" Title="申请人" />
+    <PropertyColumn Property="reimbursement => reimbursement.IsApproved" Title="是否批准" />
+
+    <TemplateColumn Context="reimbursement">
+        <a href="@($"reimbursementsforfinance/edit?id={reimbursement.Id}")">审批</a>
+    </TemplateColumn>
+</QuickGrid>
+
+@code {
+    private ApplicationDbContext context = default!;
+
+    protected override void OnInitialized()
+    {
+        context = DbFactory.CreateDbContext();
+    }
+
+    public async ValueTask DisposeAsync() => await context.DisposeAsync();
+}

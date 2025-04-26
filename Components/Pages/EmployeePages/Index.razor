@@ -1,4 +1,5 @@
 @page "/employees"
+@rendermode InteractiveServer
 @using Microsoft.AspNetCore.Authorization
 @using Microsoft.EntityFrameworkCore
 @using Microsoft.AspNetCore.Components.QuickGrid
@@ -20,11 +21,11 @@
 
 <QuickGrid Class="table" Items="FilteredEmployees" Pagination="pagination">
     <PropertyColumn Property="user => user.Name" Title="姓名" />
-    <PropertyColumn Property="user => user.Gender" Title="性别" />
-    <PropertyColumn Property="user => user.DateOfBirth" Title="出生日期" />
-    <PropertyColumn Property="user => user.Department.DepartmentName" Title="部门" />
-    <PropertyColumn Property="user => user.Level.LevelName" Title="职位" />
-    <PropertyColumn Property="user => user.DateOfEntry" Title="入职日期" />
+    <PropertyColumn Property="user => user.Gender" Title="性别" Sortable="true" />
+    <PropertyColumn Property="user => user.DateOfBirth" Title="出生日期" Sortable="true" />
+    <PropertyColumn Property="user => user.Department.DepartmentName" Title="部门" Sortable="true" />
+    <PropertyColumn Property="user => user.Level.LevelName" Title="职位" Sortable="true" />
+    <PropertyColumn Property="user => user.DateOfEntry" Title="入职日期" Sortable="true" />
     <PropertyColumn Property="user => user.Salary" Title="薪资" />
 
     <TemplateColumn Context="employee">
@@ -34,7 +35,7 @@
 <Paginator State="pagination" />
 
 @code{
-    private PaginationState pagination = new PaginationState { ItemsPerPage = 10 };
+    private PaginationState pagination = new PaginationState { ItemsPerPage = 20 };
     private ApplicationDbContext context = default!;
     [SupplyParameterFromQuery]
     private string? NameFilter { get; set; }

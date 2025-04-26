@@ -12,7 +12,7 @@
 
 <div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
     <nav class="nav flex-column">
-        <AuthorizeView Roles="Admin,Boss,HR,Manager,Employee">
+        <AuthorizeView Roles="Admin,Boss,HR,Finance,Manager,Employee">
             <Authorized>
                 <div class="nav-item px-3">
                     <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
@@ -59,6 +59,18 @@
                     </div>
 
                     <div class="nav-item px-3">
+                        <NavLink class="nav-link" href="reimbursements">
+                            <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> 报销
+                        </NavLink>
+                    </div>
+
+                    <div class="nav-item px-3">
+                        <NavLink class="nav-link" href="reimbursementsforfinance">
+                            <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 报销审批
+                        </NavLink>
+                    </div>
+
+                    <div class="nav-item px-3">
                         <NavLink class="nav-link" href="employees">
                             <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 员工管理
                         </NavLink>
@@ -73,24 +85,6 @@
                     <div class="nav-item px-3">
                         <NavLink class="nav-link" href="levels">
                             <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 职位管理
-                        </NavLink>
-                    </div>
-
-                    <div class="nav-item px-3">
-                        <NavLink class="nav-link" href="limitedemployees">
-                            <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 同事
-                        </NavLink>
-                    </div>
-
-                    <div class="nav-item px-3">
-                        <NavLink class="nav-link" href="limiteddepartments">
-                            <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 部门
-                        </NavLink>
-                    </div>
-
-                    <div class="nav-item px-3">
-                        <NavLink class="nav-link" href="limitedlevels">
-                            <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 职位
                         </NavLink>
                     </div>
                 }
@@ -151,6 +145,33 @@
                     <div class="nav-item px-3">
                         <NavLink class="nav-link" href="levels">
                             <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 职位管理
+                        </NavLink>
+                    </div>
+                }
+
+                 @if (context.User.IsInRole("Finance"))
+                {
+                    <div class="nav-item px-3">
+                        <NavLink class="nav-link" href="reimbursementsforfinance">
+                            <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 报销审批
+                        </NavLink>
+                    </div>
+
+                    <div class="nav-item px-3">
+                        <NavLink class="nav-link" href="limitedemployees">
+                            <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 同事
+                        </NavLink>
+                    </div>
+
+                    <div class="nav-item px-3">
+                        <NavLink class="nav-link" href="limiteddepartments">
+                            <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 部门
+                        </NavLink>
+                    </div>
+
+                    <div class="nav-item px-3">
+                        <NavLink class="nav-link" href="limitedlevels">
+                            <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> 职位
                         </NavLink>
                     </div>
                 }

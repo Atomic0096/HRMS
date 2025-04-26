@@ -6,7 +6,7 @@
 @using HRMS.Models
 @inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
 @inject NavigationManager NavigationManager
-@attribute [Authorize(Roles = "Admin,Manager,Employee")]
+@attribute [Authorize(Roles = "Admin,Manager,Finance,Employee")]
 
 <PageTitle>职位详情</PageTitle>
 
