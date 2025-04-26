@@ -1,0 +1,64 @@
+@page "/reimbursements/create"
+@using Microsoft.EntityFrameworkCore
+@using HRMS.Models
+@inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<PageTitle>Create</PageTitle>
+
+<h1>Create</h1>
+
+<h2>Reimbursement</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <EditForm method="post" Model="Reimbursement" OnValidSubmit="AddReimbursement" FormName="create" Enhance>
+            <DataAnnotationsValidator />
+            <ValidationSummary class="text-danger" role="alert"/>
+            <div class="mb-3">
+                <label for="date" class="form-label">Date:</label> 
+                <InputDate id="date" @bind-Value="Reimbursement.Date" class="form-control" /> 
+                <ValidationMessage For="() => Reimbursement.Date" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="type" class="form-label">Type:</label> 
+                <InputText id="type" @bind-Value="Reimbursement.Type" class="form-control" /> 
+                <ValidationMessage For="() => Reimbursement.Type" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="amount" class="form-label">Amount:</label> 
+                <InputNumber id="amount" @bind-Value="Reimbursement.Amount" class="form-control" /> 
+                <ValidationMessage For="() => Reimbursement.Amount" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="isapproved" class="form-label">IsApproved:</label> 
+                <InputText id="isapproved" @bind-Value="Reimbursement.IsApproved" class="form-control" /> 
+                <ValidationMessage For="() => Reimbursement.IsApproved" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="applicationuserid" class="form-label">ApplicationUserId:</label> 
+                <InputText id="applicationuserid" @bind-Value="Reimbursement.ApplicationUserId" class="form-control" /> 
+                <ValidationMessage For="() => Reimbursement.ApplicationUserId" class="text-danger" /> 
+            </div>        
+            <button type="submit" class="btn btn-primary">Create</button>
+        </EditForm>
+    </div>
+</div>
+
+<div>
+    <a href="/reimbursements">Back to List</a>
+</div>
+
+@code {
+    [SupplyParameterFromForm]
+    private Reimbursement Reimbursement { get; set; } = new();
+
+    // To protect from overposting attacks, see https://learn.microsoft.com/aspnet/core/blazor/forms/#mitigate-overposting-attacks.
+    private async Task AddReimbursement()
+    {
+        using var context = DbFactory.CreateDbContext();
+        context.Reimbursement.Add(Reimbursement);
+        await context.SaveChangesAsync();
+        NavigationManager.NavigateTo("/reimbursements");
+    }
+}

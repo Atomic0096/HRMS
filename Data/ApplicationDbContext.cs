@@ -16,4 +16,6 @@ public DbSet<HRMS.Models.Leave> Leave { get; set; } = default!;
 public DbSet<HRMS.Models.Level> Level { get; set; } = default!;
 
 public DbSet<HRMS.Models.Recruitment> Recruitment { get; set; } = default!;
+
+public DbSet<HRMS.Models.Reimbursement> Reimbursement { get; set; } = default!;
 }

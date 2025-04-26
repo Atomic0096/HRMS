@@ -1,0 +1,40 @@
+@page "/reimbursements"
+@using Microsoft.EntityFrameworkCore
+@using Microsoft.AspNetCore.Components.QuickGrid
+@using HRMS.Models
+@using HRMS.Data
+@implements IAsyncDisposable
+@inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
+
+<PageTitle>Index</PageTitle>
+
+<h1>Index</h1>
+
+<p>
+    <a href="reimbursements/create">Create New</a>
+</p>
+
+<QuickGrid Class="table" Items="context.Reimbursement">
+    <PropertyColumn Property="reimbursement => reimbursement.Date" />
+    <PropertyColumn Property="reimbursement => reimbursement.Type" />
+    <PropertyColumn Property="reimbursement => reimbursement.Amount" />
+    <PropertyColumn Property="reimbursement => reimbursement.IsApproved" />
+    <PropertyColumn Property="reimbursement => reimbursement.ApplicationUserId" />
+
+    <TemplateColumn Context="reimbursement">
+        <a href="@($"reimbursements/edit?id={reimbursement.Id}")">Edit</a> |
+        <a href="@($"reimbursements/details?id={reimbursement.Id}")">Details</a> |
+        <a href="@($"reimbursements/delete?id={reimbursement.Id}")">Delete</a>
+    </TemplateColumn>
+</QuickGrid>
+
+@code {
+    private ApplicationDbContext context = default!;
+
+    protected override void OnInitialized()
+    {
+        context = DbFactory.CreateDbContext();
+    }
+
+    public async ValueTask DisposeAsync() => await context.DisposeAsync();
+}
