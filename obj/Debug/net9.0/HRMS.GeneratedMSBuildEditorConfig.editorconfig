@@ -17,349 +17,349 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = HRMS
 build_property.RootNamespace = HRMS
-build_property.ProjectDir = G:\HRMS\
+build_property.ProjectDir = G:\My Project\HRMS\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = G:\HRMS
+build_property.MSBuildProjectDirectory = G:\My Project\HRMS
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
-[G:/HRMS/Components/Account/Pages/AccessDenied.razor]
+[G:/My Project/HRMS/Components/Account/Pages/AccessDenied.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXEFjY2Vzc0RlbmllZC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Account/Pages/ConfirmEmail.razor]
+[G:/My Project/HRMS/Components/Account/Pages/ConfirmEmail.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXENvbmZpcm1FbWFpbC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Account/Pages/ConfirmEmailChange.razor]
+[G:/My Project/HRMS/Components/Account/Pages/ConfirmEmailChange.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXENvbmZpcm1FbWFpbENoYW5nZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Account/Pages/ExternalLogin.razor]
+[G:/My Project/HRMS/Components/Account/Pages/ExternalLogin.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXEV4dGVybmFsTG9naW4ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Account/Pages/ForgotPassword.razor]
+[G:/My Project/HRMS/Components/Account/Pages/ForgotPassword.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXEZvcmdvdFBhc3N3b3JkLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Account/Pages/ForgotPasswordConfirmation.razor]
+[G:/My Project/HRMS/Components/Account/Pages/ForgotPasswordConfirmation.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXEZvcmdvdFBhc3N3b3JkQ29uZmlybWF0aW9uLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Account/Pages/InvalidPasswordReset.razor]
+[G:/My Project/HRMS/Components/Account/Pages/InvalidPasswordReset.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXEludmFsaWRQYXNzd29yZFJlc2V0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Account/Pages/InvalidUser.razor]
+[G:/My Project/HRMS/Components/Account/Pages/InvalidUser.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXEludmFsaWRVc2VyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Account/Pages/Lockout.razor]
+[G:/My Project/HRMS/Components/Account/Pages/Lockout.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXExvY2tvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Account/Pages/Login.razor]
+[G:/My Project/HRMS/Components/Account/Pages/Login.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXExvZ2luLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Account/Pages/LoginWith2fa.razor]
+[G:/My Project/HRMS/Components/Account/Pages/LoginWith2fa.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXExvZ2luV2l0aDJmYS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Account/Pages/LoginWithRecoveryCode.razor]
+[G:/My Project/HRMS/Components/Account/Pages/LoginWithRecoveryCode.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXExvZ2luV2l0aFJlY292ZXJ5Q29kZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Account/Pages/Manage/ChangePassword.razor]
+[G:/My Project/HRMS/Components/Account/Pages/Manage/ChangePassword.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXE1hbmFnZVxDaGFuZ2VQYXNzd29yZC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Account/Pages/Manage/DeletePersonalData.razor]
+[G:/My Project/HRMS/Components/Account/Pages/Manage/DeletePersonalData.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXE1hbmFnZVxEZWxldGVQZXJzb25hbERhdGEucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Account/Pages/Manage/Disable2fa.razor]
+[G:/My Project/HRMS/Components/Account/Pages/Manage/Disable2fa.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXE1hbmFnZVxEaXNhYmxlMmZhLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Account/Pages/Manage/Email.razor]
+[G:/My Project/HRMS/Components/Account/Pages/Manage/Email.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXE1hbmFnZVxFbWFpbC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Account/Pages/Manage/EnableAuthenticator.razor]
+[G:/My Project/HRMS/Components/Account/Pages/Manage/EnableAuthenticator.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXE1hbmFnZVxFbmFibGVBdXRoZW50aWNhdG9yLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Account/Pages/Manage/ExternalLogins.razor]
+[G:/My Project/HRMS/Components/Account/Pages/Manage/ExternalLogins.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXE1hbmFnZVxFeHRlcm5hbExvZ2lucy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Account/Pages/Manage/GenerateRecoveryCodes.razor]
+[G:/My Project/HRMS/Components/Account/Pages/Manage/GenerateRecoveryCodes.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXE1hbmFnZVxHZW5lcmF0ZVJlY292ZXJ5Q29kZXMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Account/Pages/Manage/Index.razor]
+[G:/My Project/HRMS/Components/Account/Pages/Manage/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXE1hbmFnZVxJbmRleC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Account/Pages/Manage/PersonalData.razor]
+[G:/My Project/HRMS/Components/Account/Pages/Manage/PersonalData.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXE1hbmFnZVxQZXJzb25hbERhdGEucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Account/Pages/Manage/ResetAuthenticator.razor]
+[G:/My Project/HRMS/Components/Account/Pages/Manage/ResetAuthenticator.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXE1hbmFnZVxSZXNldEF1dGhlbnRpY2F0b3IucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Account/Pages/Manage/SetPassword.razor]
+[G:/My Project/HRMS/Components/Account/Pages/Manage/SetPassword.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXE1hbmFnZVxTZXRQYXNzd29yZC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Account/Pages/Manage/TwoFactorAuthentication.razor]
+[G:/My Project/HRMS/Components/Account/Pages/Manage/TwoFactorAuthentication.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXE1hbmFnZVxUd29GYWN0b3JBdXRoZW50aWNhdGlvbi5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Account/Pages/Manage/_Imports.razor]
+[G:/My Project/HRMS/Components/Account/Pages/Manage/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXE1hbmFnZVxfSW1wb3J0cy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Account/Pages/Register.razor]
+[G:/My Project/HRMS/Components/Account/Pages/Register.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXFJlZ2lzdGVyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Account/Pages/RegisterConfirmation.razor]
+[G:/My Project/HRMS/Components/Account/Pages/RegisterConfirmation.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXFJlZ2lzdGVyQ29uZmlybWF0aW9uLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Account/Pages/ResendEmailConfirmation.razor]
+[G:/My Project/HRMS/Components/Account/Pages/ResendEmailConfirmation.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXFJlc2VuZEVtYWlsQ29uZmlybWF0aW9uLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Account/Pages/ResetPassword.razor]
+[G:/My Project/HRMS/Components/Account/Pages/ResetPassword.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXFJlc2V0UGFzc3dvcmQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Account/Pages/ResetPasswordConfirmation.razor]
+[G:/My Project/HRMS/Components/Account/Pages/ResetPasswordConfirmation.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXFJlc2V0UGFzc3dvcmRDb25maXJtYXRpb24ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Account/Pages/_Imports.razor]
+[G:/My Project/HRMS/Components/Account/Pages/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXF9JbXBvcnRzLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Account/Shared/ExternalLoginPicker.razor]
+[G:/My Project/HRMS/Components/Account/Shared/ExternalLoginPicker.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFNoYXJlZFxFeHRlcm5hbExvZ2luUGlja2VyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Account/Shared/ManageLayout.razor]
+[G:/My Project/HRMS/Components/Account/Shared/ManageLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFNoYXJlZFxNYW5hZ2VMYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Account/Shared/ManageNavMenu.razor]
+[G:/My Project/HRMS/Components/Account/Shared/ManageNavMenu.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFNoYXJlZFxNYW5hZ2VOYXZNZW51LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Account/Shared/RedirectToLogin.razor]
+[G:/My Project/HRMS/Components/Account/Shared/RedirectToLogin.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFNoYXJlZFxSZWRpcmVjdFRvTG9naW4ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Account/Shared/ShowRecoveryCodes.razor]
+[G:/My Project/HRMS/Components/Account/Shared/ShowRecoveryCodes.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFNoYXJlZFxTaG93UmVjb3ZlcnlDb2Rlcy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Account/Shared/StatusMessage.razor]
+[G:/My Project/HRMS/Components/Account/Shared/StatusMessage.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFNoYXJlZFxTdGF0dXNNZXNzYWdlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/App.razor]
+[G:/My Project/HRMS/Components/App.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBcHAucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Pages/Auth.razor]
+[G:/My Project/HRMS/Components/Pages/Auth.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xBdXRoLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Pages/Counter.razor]
+[G:/My Project/HRMS/Components/Pages/Counter.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDb3VudGVyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Pages/CultivationPagesForEmployees/Details.razor]
+[G:/My Project/HRMS/Components/Pages/CultivationPagesForEmployees/Details.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDdWx0aXZhdGlvblBhZ2VzRm9yRW1wbG95ZWVzXERldGFpbHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Pages/CultivationPagesForEmployees/Edit.razor]
+[G:/My Project/HRMS/Components/Pages/CultivationPagesForEmployees/Edit.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDdWx0aXZhdGlvblBhZ2VzRm9yRW1wbG95ZWVzXEVkaXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Pages/CultivationPagesForEmployees/Index.razor]
+[G:/My Project/HRMS/Components/Pages/CultivationPagesForEmployees/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDdWx0aXZhdGlvblBhZ2VzRm9yRW1wbG95ZWVzXEluZGV4LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Pages/CultivationPagesForSupervisors/Create.razor]
+[G:/My Project/HRMS/Components/Pages/CultivationPagesForSupervisors/Create.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDdWx0aXZhdGlvblBhZ2VzRm9yU3VwZXJ2aXNvcnNcQ3JlYXRlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Pages/CultivationPagesForSupervisors/Delete.razor]
+[G:/My Project/HRMS/Components/Pages/CultivationPagesForSupervisors/Delete.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDdWx0aXZhdGlvblBhZ2VzRm9yU3VwZXJ2aXNvcnNcRGVsZXRlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Pages/CultivationPagesForSupervisors/Details.razor]
+[G:/My Project/HRMS/Components/Pages/CultivationPagesForSupervisors/Details.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDdWx0aXZhdGlvblBhZ2VzRm9yU3VwZXJ2aXNvcnNcRGV0YWlscy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Pages/CultivationPagesForSupervisors/Index.razor]
+[G:/My Project/HRMS/Components/Pages/CultivationPagesForSupervisors/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDdWx0aXZhdGlvblBhZ2VzRm9yU3VwZXJ2aXNvcnNcSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Pages/DepartmentPages/Create.razor]
+[G:/My Project/HRMS/Components/Pages/DepartmentPages/Create.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xEZXBhcnRtZW50UGFnZXNcQ3JlYXRlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Pages/DepartmentPages/Delete.razor]
+[G:/My Project/HRMS/Components/Pages/DepartmentPages/Delete.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xEZXBhcnRtZW50UGFnZXNcRGVsZXRlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Pages/DepartmentPages/Details.razor]
+[G:/My Project/HRMS/Components/Pages/DepartmentPages/Details.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xEZXBhcnRtZW50UGFnZXNcRGV0YWlscy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Pages/DepartmentPages/Edit.razor]
+[G:/My Project/HRMS/Components/Pages/DepartmentPages/Edit.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xEZXBhcnRtZW50UGFnZXNcRWRpdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Pages/DepartmentPages/Index.razor]
+[G:/My Project/HRMS/Components/Pages/DepartmentPages/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xEZXBhcnRtZW50UGFnZXNcSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Pages/EmployeePages/Edit.razor]
+[G:/My Project/HRMS/Components/Pages/EmployeePages/Edit.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFbXBsb3llZVBhZ2VzXEVkaXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Pages/EmployeePages/Index.razor]
+[G:/My Project/HRMS/Components/Pages/EmployeePages/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFbXBsb3llZVBhZ2VzXEluZGV4LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Pages/Error.razor]
+[G:/My Project/HRMS/Components/Pages/Error.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFcnJvci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Pages/Home.razor]
+[G:/My Project/HRMS/Components/Pages/Home.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xIb21lLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Pages/LeavePagesForEmployees/Create.razor]
+[G:/My Project/HRMS/Components/Pages/LeavePagesForEmployees/Create.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xMZWF2ZVBhZ2VzRm9yRW1wbG95ZWVzXENyZWF0ZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Pages/LeavePagesForEmployees/Delete.razor]
+[G:/My Project/HRMS/Components/Pages/LeavePagesForEmployees/Delete.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xMZWF2ZVBhZ2VzRm9yRW1wbG95ZWVzXERlbGV0ZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Pages/LeavePagesForEmployees/Index.razor]
+[G:/My Project/HRMS/Components/Pages/LeavePagesForEmployees/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xMZWF2ZVBhZ2VzRm9yRW1wbG95ZWVzXEluZGV4LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Pages/LeavePagesForSupervisors/Edit.razor]
+[G:/My Project/HRMS/Components/Pages/LeavePagesForSupervisors/Edit.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xMZWF2ZVBhZ2VzRm9yU3VwZXJ2aXNvcnNcRWRpdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Pages/LeavePagesForSupervisors/Index.razor]
+[G:/My Project/HRMS/Components/Pages/LeavePagesForSupervisors/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xMZWF2ZVBhZ2VzRm9yU3VwZXJ2aXNvcnNcSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Pages/LevelPages/Create.razor]
+[G:/My Project/HRMS/Components/Pages/LevelPages/Create.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xMZXZlbFBhZ2VzXENyZWF0ZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Pages/LevelPages/Delete.razor]
+[G:/My Project/HRMS/Components/Pages/LevelPages/Delete.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xMZXZlbFBhZ2VzXERlbGV0ZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Pages/LevelPages/Details.razor]
+[G:/My Project/HRMS/Components/Pages/LevelPages/Details.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xMZXZlbFBhZ2VzXERldGFpbHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Pages/LevelPages/Edit.razor]
+[G:/My Project/HRMS/Components/Pages/LevelPages/Edit.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xMZXZlbFBhZ2VzXEVkaXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Pages/LevelPages/Index.razor]
+[G:/My Project/HRMS/Components/Pages/LevelPages/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xMZXZlbFBhZ2VzXEluZGV4LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Pages/LimitedDepartmentPages/Details.razor]
+[G:/My Project/HRMS/Components/Pages/LimitedDepartmentPages/Details.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xMaW1pdGVkRGVwYXJ0bWVudFBhZ2VzXERldGFpbHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Pages/LimitedDepartmentPages/Index.razor]
+[G:/My Project/HRMS/Components/Pages/LimitedDepartmentPages/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xMaW1pdGVkRGVwYXJ0bWVudFBhZ2VzXEluZGV4LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Pages/LimitedEmployeePages/Index.razor]
+[G:/My Project/HRMS/Components/Pages/LimitedEmployeePages/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xMaW1pdGVkRW1wbG95ZWVQYWdlc1xJbmRleC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Pages/LimitedLevelPages/Details.razor]
+[G:/My Project/HRMS/Components/Pages/LimitedLevelPages/Details.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xMaW1pdGVkTGV2ZWxQYWdlc1xEZXRhaWxzLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Pages/LimitedLevelPages/Index.razor]
+[G:/My Project/HRMS/Components/Pages/LimitedLevelPages/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xMaW1pdGVkTGV2ZWxQYWdlc1xJbmRleC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Pages/RecruitmentPagesForHRs/Delete.razor]
+[G:/My Project/HRMS/Components/Pages/RecruitmentPagesForHRs/Delete.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xSZWNydWl0bWVudFBhZ2VzRm9ySFJzXERlbGV0ZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Pages/RecruitmentPagesForHRs/Details.razor]
+[G:/My Project/HRMS/Components/Pages/RecruitmentPagesForHRs/Details.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xSZWNydWl0bWVudFBhZ2VzRm9ySFJzXERldGFpbHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Pages/RecruitmentPagesForHRs/Index.razor]
+[G:/My Project/HRMS/Components/Pages/RecruitmentPagesForHRs/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xSZWNydWl0bWVudFBhZ2VzRm9ySFJzXEluZGV4LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Pages/RecruitmentPagesForManager/Create.razor]
+[G:/My Project/HRMS/Components/Pages/RecruitmentPagesForManager/Create.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xSZWNydWl0bWVudFBhZ2VzRm9yTWFuYWdlclxDcmVhdGUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Pages/RecruitmentPagesForManager/Delete.razor]
+[G:/My Project/HRMS/Components/Pages/RecruitmentPagesForManager/Delete.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xSZWNydWl0bWVudFBhZ2VzRm9yTWFuYWdlclxEZWxldGUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Pages/RecruitmentPagesForManager/Details.razor]
+[G:/My Project/HRMS/Components/Pages/RecruitmentPagesForManager/Details.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xSZWNydWl0bWVudFBhZ2VzRm9yTWFuYWdlclxEZXRhaWxzLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Pages/RecruitmentPagesForManager/Edit.razor]
+[G:/My Project/HRMS/Components/Pages/RecruitmentPagesForManager/Edit.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xSZWNydWl0bWVudFBhZ2VzRm9yTWFuYWdlclxFZGl0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Pages/RecruitmentPagesForManager/Index.razor]
+[G:/My Project/HRMS/Components/Pages/RecruitmentPagesForManager/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xSZWNydWl0bWVudFBhZ2VzRm9yTWFuYWdlclxJbmRleC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Pages/Weather.razor]
+[G:/My Project/HRMS/Components/Pages/Weather.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xXZWF0aGVyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Routes.razor]
+[G:/My Project/HRMS/Components/Routes.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xSb3V0ZXMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/_Imports.razor]
+[G:/My Project/HRMS/Components/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xfSW1wb3J0cy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/HRMS/Components/Layout/MainLayout.razor]
+[G:/My Project/HRMS/Components/Layout/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTWFpbkxheW91dC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-oho544tq1e
 
-[G:/HRMS/Components/Layout/NavMenu.razor]
+[G:/My Project/HRMS/Components/Layout/NavMenu.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTmF2TWVudS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-0j31fm4ku7
