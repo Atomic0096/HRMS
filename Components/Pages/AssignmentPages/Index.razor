@@ -1,0 +1,38 @@
+@page "/assignments"
+@using Microsoft.EntityFrameworkCore
+@using Microsoft.AspNetCore.Components.QuickGrid
+@using HRMS.Models
+@using HRMS.Data
+@implements IAsyncDisposable
+@inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
+
+<PageTitle>Index</PageTitle>
+
+<h1>Index</h1>
+
+<p>
+    <a href="assignments/create">Create New</a>
+</p>
+
+<QuickGrid Class="table" Items="context.Assignment">
+    <PropertyColumn Property="assignment => assignment.AssignmentName" />
+    <PropertyColumn Property="assignment => assignment.StartDate" />
+    <PropertyColumn Property="assignment => assignment.Status" />
+
+    <TemplateColumn Context="assignment">
+        <a href="@($"assignments/edit?id={assignment.Id}")">Edit</a> |
+        <a href="@($"assignments/details?id={assignment.Id}")">Details</a> |
+        <a href="@($"assignments/delete?id={assignment.Id}")">Delete</a>
+    </TemplateColumn>
+</QuickGrid>
+
+@code {
+    private ApplicationDbContext context = default!;
+
+    protected override void OnInitialized()
+    {
+        context = DbFactory.CreateDbContext();
+    }
+
+    public async ValueTask DisposeAsync() => await context.DisposeAsync();
+}

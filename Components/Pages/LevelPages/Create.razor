@@ -1,0 +1,42 @@
+@page "/levels/create"
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.EntityFrameworkCore
+@using HRMS.Models
+@inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
+@inject NavigationManager NavigationManager
+@attribute [Authorize(Roles = "Admin,Boss,HR")]
+
+<PageTitle>新建职位</PageTitle>
+
+<h1>新建职位</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <EditForm method="post" Model="Level" OnValidSubmit="AddLevel" FormName="create" Enhance>
+            <DataAnnotationsValidator />
+            <ValidationSummary class="text-danger" role="alert"/>
+            <div class="mb-3">
+                <label for="levelname" class="form-label">职位名称</label> 
+                <InputText id="levelname" @bind-Value="Level.LevelName" class="form-control" aria-required="true"/> 
+                <ValidationMessage For="() => Level.LevelName" class="text-danger" /> 
+            </div>        
+            <button type="submit" class="btn btn-primary">创建</button>
+            <a href="/levels"><button class="btn btn-primary">返回</button></a>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    [SupplyParameterFromForm]
+    private Level Level { get; set; } = new();
+
+    // To protect from overposting attacks, see https://learn.microsoft.com/aspnet/core/blazor/forms/#mitigate-overposting-attacks.
+    private async Task AddLevel()
+    {
+        using var context = DbFactory.CreateDbContext();
+        context.Level.Add(Level);
+        await context.SaveChangesAsync();
+        NavigationManager.NavigateTo("/levels");
+    }
+}

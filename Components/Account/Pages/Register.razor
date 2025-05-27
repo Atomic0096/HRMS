@@ -15,42 +15,53 @@
 @inject NavigationManager NavigationManager
 @inject IdentityRedirectManager RedirectManager
 
-<PageTitle>Register</PageTitle>
+<PageTitle>创建账户</PageTitle>
 
-<h1>Register</h1>
+<h1>创建账户</h1>
 
 <div class="row">
     <div class="col-lg-6">
         <StatusMessage Message="@Message" />
         <EditForm Model="Input" asp-route-returnUrl="@ReturnUrl" method="post" OnValidSubmit="RegisterUser" FormName="register">
             <DataAnnotationsValidator />
-            <h2>Create a new account.</h2>
             <hr />
             <ValidationSummary class="text-danger" role="alert" />
             <div class="form-floating mb-3">
-                <InputText @bind-Value="Input.Email" id="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
-                <label for="Input.Email">Email</label>
+                <InputText @bind-Value="Input.Name" id="Input.Name" class="form-control" autocomplete="name" aria-required="true" />
+                <label for="Input.Name">姓名</label>
+                <ValidationMessage For="() => Input.Name" class="text-danger" />
+            </div>
+            <div class="form-floating mb-3">
+                <InputSelect @bind-Value="Input.Gender" id="Input.Gender" class="form-control" autocomplete="gender" aria-required="true">
+                    <option value="">-- 选择性别 --</option>
+                    <option value="男">男</option>
+                    <option value="女">女</option>
+                </InputSelect>
+                <label for="Input.Gender">性别</label>
+                <ValidationMessage For="() => Input.Gender" class="text-danger" />
+            </div>
+            <div class="form-floating mb-3">
+                <InputDate @bind-Value="Input.DateOfBirth" id="Input.DateOfBirth" class="form-control" autocomplete="dateofbirth" aria-required="true" />
+                <label for="Input.DateOfBirth">出生日期</label>
+                <ValidationMessage For="() => Input.DateOfBirth" class="text-danger" />
+            </div>
+            <div class="form-floating mb-3">
+                <InputText @bind-Value="Input.Email" id="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
+                <label for="Input.Email">邮箱</label>
                 <ValidationMessage For="() => Input.Email" class="text-danger" />
             </div>
             <div class="form-floating mb-3">
-                <InputText type="password" @bind-Value="Input.Password" id="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
-                <label for="Input.Password">Password</label>
+                <InputText type="password" @bind-Value="Input.Password" id="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" />
+                <label for="Input.Password">密码</label>
                 <ValidationMessage For="() => Input.Password" class="text-danger" />
             </div>
             <div class="form-floating mb-3">
-                <InputText type="password" @bind-Value="Input.ConfirmPassword" id="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
-                <label for="Input.ConfirmPassword">Confirm Password</label>
+                <InputText type="password" @bind-Value="Input.ConfirmPassword" id="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
+                <label for="Input.ConfirmPassword">确认密码</label>
                 <ValidationMessage For="() => Input.ConfirmPassword" class="text-danger" />
             </div>
-            <button type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+            <button type="submit" class="w-100 btn btn-lg btn-primary">注册</button>
         </EditForm>
-    </div>
-    <div class="col-lg-4 col-lg-offset-2">
-        <section>
-            <h3>Use another service to register.</h3>
-            <hr />
-            <ExternalLoginPicker />
-        </section>
     </div>
 </div>
 
@@ -68,6 +79,13 @@
     public async Task RegisterUser(EditContext editContext)
     {
         var user = CreateUser();
+
+        user.Name = Input.Name;
+        user.Gender = Input.Gender;
+        user.DateOfBirth = Input.DateOfBirth;
+        user.DepartmentId = 1;
+        user.LevelId = 1;
+        user.EmailConfirmed = true;
 
         await UserStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
         var emailStore = GetEmailStore();
@@ -94,7 +112,7 @@
         if (UserManager.Options.SignIn.RequireConfirmedAccount)
         {
             RedirectManager.RedirectTo(
-                "Account/RegisterConfirmation",
+                "Account/Login",
                 new() { ["email"] = Input.Email, ["returnUrl"] = ReturnUrl });
         }
 
@@ -126,20 +144,33 @@
 
     private sealed class InputModel
     {
-        [Required]
-        [EmailAddress]
+        [Required(ErrorMessage = "姓名为必填项")]
+        [StringLength(100, ErrorMessage = "姓名的长度需在1到100个字符之间", MinimumLength = 1)]
+        [Display(Name = "Name")]
+        public string Name { get; set; } = "";
+
+        [Required(ErrorMessage = "性别为必填项")]
+        [Display(Name = "Gender ")]
+        public string Gender { get; set; } = "";
+
+        [Required(ErrorMessage = "出生日期为必填项")]
+        [Display(Name = "DateOfBirth")]
+        public DateOnly DateOfBirth { get; set; }
+
+        [Required(ErrorMessage = "邮箱地址为必填项")]
+        [EmailAddress(ErrorMessage = "请输入有效的邮箱格式")]
         [Display(Name = "Email")]
         public string Email { get; set; } = "";
 
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+        [Required(ErrorMessage = "密码为必填项")]
+        [StringLength(100, ErrorMessage = "密码的长度需在6到100个字符之间", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; } = "";
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Compare("Password", ErrorMessage = "两次输入的密码不一致")]
         public string ConfirmPassword { get; set; } = "";
     }
 }

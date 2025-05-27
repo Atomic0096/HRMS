@@ -1,0 +1,114 @@
+@page "/reimbursementsforfinance/edit"
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.EntityFrameworkCore
+@using HRMS.Models
+@inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
+@inject NavigationManager NavigationManager
+@attribute [Authorize(Roles = "Admin,Finance")]
+
+<PageTitle>审批</PageTitle>
+
+<h1>审批</h1>
+
+<hr />
+@if (Reimbursement is null)
+{
+    <p><em>加载中...</em></p>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-4">
+            <EditForm method="post" Model="Reimbursement" OnValidSubmit="UpdateReimbursement" FormName="edit" Enhance>
+                <DataAnnotationsValidator />
+                <ValidationSummary role="alert"/>
+                <input type="hidden" name="Reimbursement.Id" value="@Reimbursement.Id" />
+                <div class="mb-3">
+                    <label for="date" class="form-label">日期：</label>
+                    <InputDate id="date" @bind-Value="Reimbursement.Date" class="form-control" disabled />
+                    <ValidationMessage For="() => Reimbursement.Date" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="type" class="form-label">类型：</label>
+                    <InputText id="type" @bind-Value="Reimbursement.Type" class="form-control" disabled />
+                    <ValidationMessage For="() => Reimbursement.Type" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="amount" class="form-label">金额：</label>
+                    <InputNumber id="amount" @bind-Value="Reimbursement.Amount" class="form-control" disabled />
+                    <ValidationMessage For="() => Reimbursement.Amount" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="isapproved" class="form-label">是否批准：</label>
+                    <InputSelect id="isapproved" @bind-Value="@Reimbursement.IsApproved" class="form-control">
+                        <option value=""></option>
+                        <option value="是">是</option>
+                        <option value="否">否</option>
+                    </InputSelect>
+                </div>
+                <button type="submit" class="btn btn-primary">保存</button>
+                <a href="/reimbursementsforfinance"><button class="btn btn-primary">返回</button></a>
+            </EditForm>
+        </div>
+    </div>
+}
+
+@code {
+    [SupplyParameterFromQuery]
+    private int Id { get; set; }
+
+    [SupplyParameterFromForm]
+    private Reimbursement? Reimbursement { get; set; }
+    private List<Data.ApplicationUser> ApplicationUsers { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        using var context = DbFactory.CreateDbContext();
+        ApplicationUsers = await context.Users.ToListAsync();
+        Reimbursement ??= await context.Reimbursement.FirstOrDefaultAsync(m => m.Id == Id);
+
+        if (Reimbursement is null)
+        {
+            NavigationManager.NavigateTo("notfound");
+        }
+    }
+
+    private async Task UpdateReimbursement()
+    {
+        using var context = DbFactory.CreateDbContext();
+        var existingReimbursement = await context.Reimbursement.FirstOrDefaultAsync(e => e.Id == Id);
+        if(existingReimbursement == null)
+        {
+            NavigationManager.NavigateTo("notfound");
+            return;
+        }
+
+        existingReimbursement.IsApproved = Reimbursement.IsApproved;
+
+        try
+        {
+            await context.SaveChangesAsync();
+        }
+        catch (DbUpdateConcurrencyException ex)
+        {
+            var entry = ex.Entries.Single();
+            var databaseValues = await entry.GetDatabaseValuesAsync();
+
+            if (databaseValues == null)
+            {
+                NavigationManager.NavigateTo("notfound");
+                return;
+            }
+            entry.OriginalValues.SetValues(databaseValues);
+            await context.SaveChangesAsync();
+        }
+
+        NavigationManager.NavigateTo("/reimbursementsforfinance");
+    }
+
+    private bool ReimbursementExists(int id)
+    {
+        using var context = DbFactory.CreateDbContext();
+        return context.Reimbursement.Any(e => e.Id == id);
+    }
+    }

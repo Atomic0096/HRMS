@@ -1,0 +1,111 @@
+@page "/leavesforsupervisors/edit"
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.EntityFrameworkCore
+@using HRMS.Models
+@inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
+@inject NavigationManager NavigationManager
+@attribute [Authorize(Roles = "Admin,HR")]
+
+<PageTitle>审批</PageTitle>
+
+<h1>审批</h1>
+
+<hr />
+@if (Leave is null)
+{
+    <p><em>加载中...</em></p>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-4">
+            <EditForm method="post" Model="Leave" OnValidSubmit="UpdateLeave" FormName="edit" Enhance>
+                <DataAnnotationsValidator />
+                <ValidationSummary role="alert"/>
+                <input type="hidden" name="Leave.Id" value="@Leave.Id" />
+                <div class="mb-3">
+                    <label for="startdate" class="form-label">开始日期：</label>
+                    <InputDate id="startdate" @bind-Value="Leave.StartDate" class="form-control" disabled />
+                    <ValidationMessage For="() => Leave.StartDate" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="enddate" class="form-label">结束日期：</label>
+                    <InputDate id="enddate" @bind-Value="Leave.EndDate" class="form-control" disabled />
+                    <ValidationMessage For="() => Leave.EndDate" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="isapproved" class="form-label">是否批准：</label>
+                    <InputSelect id="isapproved" @bind-Value="Leave.IsApproved" class="form-control">
+                        <option value=""></option>
+                        <option value="是">是</option>
+                        <option value="否">否</option>
+                    </InputSelect>
+                </div>
+                <button type="submit" class="btn btn-primary">保存</button>
+                <a href="/leavesforsupervisors"><button class="btn btn-primary">返回</button></a>
+            </EditForm>
+        </div>
+    </div>
+}
+
+@code {
+    [SupplyParameterFromQuery]
+    private int Id { get; set; }
+
+    [SupplyParameterFromForm]
+    private Leave? Leave { get; set; }
+    private List<Data.ApplicationUser> ApplicationUsers { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        using var context = DbFactory.CreateDbContext();
+        ApplicationUsers = await context.Users.ToListAsync();
+        Leave ??= await context.Leave.FirstOrDefaultAsync(m => m.Id == Id);
+
+        if (Leave is null)
+        {
+            NavigationManager.NavigateTo("notfound");
+        }
+    }
+
+    // To protect from overposting attacks, enable the specific properties you want to bind to.
+    // For more information, see https://learn.microsoft.com/aspnet/core/blazor/forms/#mitigate-overposting-attacks.
+    private async Task UpdateLeave()
+    {
+        using var context = DbFactory.CreateDbContext();
+        var existingLeave = await context.Leave.FirstOrDefaultAsync(e => e.Id == Id);
+        if(existingLeave == null)
+        {
+            NavigationManager.NavigateTo("notfound");
+            return;
+        }
+
+        existingLeave.IsApproved = Leave.IsApproved;
+
+        try
+        {
+            await context.SaveChangesAsync();
+        }
+        catch (DbUpdateConcurrencyException ex)
+        {
+            var entry = ex.Entries.Single();
+            var databaseValues = await entry.GetDatabaseValuesAsync();
+
+            if (databaseValues == null)
+            {
+                NavigationManager.NavigateTo("notfound");
+                return;
+            }
+            entry.OriginalValues.SetValues(databaseValues);
+            await context.SaveChangesAsync();
+        }
+
+        NavigationManager.NavigateTo("/leavesforsupervisors");
+    }
+
+    private bool LeaveExists(int id)
+    {
+        using var context = DbFactory.CreateDbContext();
+        return context.Leave.Any(e => e.Id == id);
+    }
+}

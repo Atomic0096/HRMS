@@ -1,0 +1,55 @@
+@page "/levels/delete"
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.EntityFrameworkCore
+@using HRMS.Models
+@inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
+@inject NavigationManager NavigationManager
+@attribute [Authorize(Roles = "Admin,Boss,HR")]
+
+<PageTitle>删除职位</PageTitle>
+
+<h1>删除职位</h1>
+
+<div>
+    <hr />
+    @if (level is null)
+    {
+        <p><em>加载中...</em></p>
+    }
+    else {
+        <dl class="row">
+            <dt class="col-sm-2">职位名称</dt>
+            <dd class="col-sm-10">@level.LevelName</dd>
+        </dl>
+        <EditForm method="post" Model="level" OnValidSubmit="DeleteLevel" FormName="delete" Enhance>
+            <button type="submit" class="btn btn-danger" disabled="@(level is null || level.LevelName == "无职位")">删除</button>
+            <a href="/levels"><button class="btn btn-primary">返回</button></a>
+        </EditForm>
+    }
+</div>
+
+@code {
+    private Level? level;
+
+    [SupplyParameterFromQuery]
+    private int Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        using var context = DbFactory.CreateDbContext();
+        level = await context.Level.FirstOrDefaultAsync(m => m.Id == Id);
+
+        if (level is null)
+        {
+            NavigationManager.NavigateTo("notfound");
+        }
+    }
+
+    private async Task DeleteLevel()
+    {
+        using var context = DbFactory.CreateDbContext();
+        context.Level.Remove(level!);
+        await context.SaveChangesAsync();
+        NavigationManager.NavigateTo("/levels");
+    }
+}

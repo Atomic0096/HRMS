@@ -1,0 +1,35 @@
+@page "/leavesforsupervisors"
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.EntityFrameworkCore
+@using Microsoft.AspNetCore.Components.QuickGrid
+@using HRMS.Models
+@using HRMS.Data
+@implements IAsyncDisposable
+@inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
+@attribute [Authorize(Roles = "Admin,HR")]
+
+<PageTitle>请假审批</PageTitle>
+
+<h1>请假审批</h1>
+
+<QuickGrid Class="table" Items="context.Leave.Include(l => l.ApplicationUser).Where(l => l.ApplicationUser != null)">
+    <PropertyColumn Property="leave => leave.ApplicationUser.Name" Title="姓名" />
+    <PropertyColumn Property="leave => leave.StartDate" Title="开始日期" />
+    <PropertyColumn Property="leave => leave.EndDate" Title="结束日期" />
+    <PropertyColumn Property="leave => leave.IsApproved" title="是否批准" />
+
+    <TemplateColumn Context="leave">
+        <a href="@($"leavesforsupervisors/edit?id={leave.Id}")">审批</a>
+    </TemplateColumn>
+</QuickGrid>
+
+@code {
+    private ApplicationDbContext context = default!;
+
+    protected override void OnInitialized()
+    {
+        context = DbFactory.CreateDbContext();
+    }
+
+    public async ValueTask DisposeAsync() => await context.DisposeAsync();
+}

@@ -1,0 +1,71 @@
+@page "/reimbursements/create"
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.EntityFrameworkCore
+@using HRMS.Models
+@using System.Security.Claims
+@inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
+@inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@attribute [Authorize(Roles = "Admin,Employee")]
+
+<PageTitle>新建报销</PageTitle>
+
+<h1>新建报销</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <EditForm method="post" Model="Reimbursement" OnValidSubmit="AddReimbursement" FormName="create" Enhance>
+            <DataAnnotationsValidator />
+            <ValidationSummary class="text-danger" role="alert"/>
+            <input type="hidden" name="Reimbursement.ApplicationUserId" value="@Reimbursement.ApplicationUserId">
+            <div class="mb-3">
+                <label for="date" class="form-label">日期：</label> 
+                <InputDate id="date" @bind-Value="Reimbursement.Date" class="form-control" /> 
+                <ValidationMessage For="() => Reimbursement.Date" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="type" class="form-label">类型：</label> 
+                <InputSelect id="type" @bind-Value="Reimbursement.Type" class="form-control" aria-required="true">
+                    <option value="">-- 选择类型 --</option>
+                    <option value="差旅费">差旅费</option>
+                    <option value="餐饮费">餐饮费</option>
+                    <option value="办公用品">办公用品</option>
+                    <option value="其他">其他</option>
+                </InputSelect>
+                <ValidationMessage For="() => Reimbursement.Type" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="amount" class="form-label">金额：</label> 
+                <InputNumber id="amount" @bind-Value="Reimbursement.Amount" class="form-control" /> 
+                <ValidationMessage For="() => Reimbursement.Amount" class="text-danger" /> 
+            </div>                  
+            <button type="submit" class="btn btn-primary">申请</button>
+            <a href="/reimbursements"><button class="btn btn-primary">返回</button></a>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    [SupplyParameterFromForm]
+    private Reimbursement Reimbursement { get; set; } = new();
+
+    // To protect from overposting attacks, see https://learn.microsoft.com/aspnet/core/blazor/forms/#mitigate-overposting-attacks.
+    protected override async Task OnInitializedAsync()
+    {
+        var AuthState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var CurrentUser = AuthState.User;
+        Reimbursement.ApplicationUserId = CurrentUser.FindFirstValue(ClaimTypes.NameIdentifier);
+        if (Reimbursement.ApplicationUserId is null)
+        {
+            NavigationManager.NavigateTo("notfound");
+        }
+    }
+    private async Task AddReimbursement()
+    {
+        using var context = DbFactory.CreateDbContext();
+        context.Reimbursement.Add(Reimbursement);
+        await context.SaveChangesAsync();
+        NavigationManager.NavigateTo("/reimbursements");
+    }
+}

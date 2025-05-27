@@ -1,0 +1,55 @@
+@page "/departments/delete"
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.EntityFrameworkCore
+@using HRMS.Models
+@inject IDbContextFactory<HRMS.Data.ApplicationDbContext> DbFactory
+@inject NavigationManager NavigationManager
+@attribute [Authorize(Roles = "Admin,Boss,HR")]
+
+<PageTitle>删除部门</PageTitle>
+
+<h1>删除部门</h1>
+
+<div>
+    <hr />
+    @if (department is null)
+    {
+        <p><em>加载中...</em></p>
+    }
+    else {
+        <dl class="row">
+            <dt class="col-sm-2">部门名称</dt>
+            <dd class="col-sm-10">@department.DepartmentName</dd>
+        </dl>
+        <EditForm method="post" Model="department" OnValidSubmit="DeleteDepartment" FormName="delete" Enhance>
+            <button type="submit" class="btn btn-danger" disabled="@(department is null || department.DepartmentName == "无部门")">删除</button>
+            <a href="/departments"><button class="btn btn-primary">返回</button></a>
+        </EditForm>
+    }
+</div>
+
+@code {
+    private Department? department;
+
+    [SupplyParameterFromQuery]
+    private int Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        using var context = DbFactory.CreateDbContext();
+        department = await context.Department.FirstOrDefaultAsync(m => m.Id == Id);
+
+        if (department is null)
+        {
+            NavigationManager.NavigateTo("notfound");
+        }
+    }
+
+    private async Task DeleteDepartment()
+    {
+        using var context = DbFactory.CreateDbContext();
+        context.Department.Remove(department!);
+        await context.SaveChangesAsync();
+        NavigationManager.NavigateTo("/departments");
+    }
+}
